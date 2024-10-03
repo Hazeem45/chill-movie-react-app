@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Image from '../../elements/Image';
 import Logo from '../../../assets/svg/logo.svg';
-import Icon from '../../../assets/svg/Icon.svg';
+import Icon from '../../../assets/svg/icon.svg';
 import './NavMenu.css';
 
 function NavMenu() {
