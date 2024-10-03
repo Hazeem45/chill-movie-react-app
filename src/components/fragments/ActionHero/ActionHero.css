@@ -1,0 +1,96 @@
+.action-hero {
+	display: flex;
+	gap: 13px;
+	margin-top: 50px;
+	position: relative;
+}
+
+.action-hero button {
+	font-size: 1em;
+	font-weight: 700;
+	border: none;
+	text-transform: capitalize;
+	color: white;
+	border-radius: 30px;
+	background-color: #0f1e93;
+	padding: 0.5em 1.7em;
+	cursor: pointer;
+}
+
+.action-hero button:nth-child(2) {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	background-color: #22282a;
+}
+
+.action-hero button:active {
+	transform: scale(0.95);
+}
+
+.age-rating {
+	font-size: 1em;
+	font-weight: 700;
+	padding: 0.5em 0.7em;
+	border-radius: 24px;
+	border: 1px solid white;
+	display: grid;
+	place-items: center;
+	cursor: default;
+}
+
+span.volume-icon {
+	position: absolute;
+	right: 0;
+	display: grid;
+	place-items: center;
+	align-self: center;
+	width: 40px;
+	height: 40px;
+	border: 1px solid white;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.volume-icon img {
+	width: 24px;
+}
+
+@media only screen and (max-width: 992px) {
+	.action-hero {
+		margin-top: 30px;
+		gap: 10px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.action-hero {
+		margin-top: 25px;
+		gap: 7px;
+	}
+
+	span.volume-icon {
+		width: 35px;
+		height: 35px;
+	}
+
+	.volume-icon img {
+		width: 19px;
+	}
+}
+
+@media only screen and (max-width: 576px) {
+	.action-hero {
+		margin-top: 15px;
+	}
+}
+
+@media only screen and (max-width: 414px) {
+	.action-hero button {
+		padding: 0.4em 1.4em;
+	}
+
+	.action-hero button:nth-child(2) {
+		gap: 2px;
+	}
+}

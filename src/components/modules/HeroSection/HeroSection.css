@@ -1,0 +1,139 @@
+section.hero {
+	padding: 0;
+	overflow: hidden;
+}
+
+.hero-container {
+	position: relative;
+	height: auto;
+	width: 100%;
+}
+
+.overlay-hero {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(0deg, rgba(24, 26, 28, 1) 27%, rgba(24, 26, 28, 0.8) 48%, rgba(24, 26, 28, 0.5) 72%, rgba(24, 26, 28, 0) 100%);
+	z-index: 1;
+}
+
+.video-container {
+	position: relative;
+	width: 100%;
+	padding-top: 56.25%;
+	box-sizing: border-box;
+	margin-bottom: -12.5%;
+}
+
+.video-container iframe {
+	position: absolute;
+	top: -13%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.video-container button {
+	all: unset;
+	cursor: pointer;
+	position: absolute;
+	z-index: 1;
+	height: 100%;
+	top: -10%;
+	padding: 0 20px;
+	background-color: rgba(24, 26, 28, 0.05);
+	color: rgba(255, 255, 255, 0.5);
+	transition: 0.35s;
+}
+
+.video-container button.prev {
+	left: 0;
+}
+
+.video-container button.next {
+	right: 0;
+}
+
+.video-container button:hover {
+	background-color: rgba(24, 26, 28, 0.5);
+	color: white;
+}
+
+.hero-text {
+	position: absolute;
+	left: 6%;
+	right: 6%;
+	bottom: 34%;
+	z-index: 2;
+}
+
+.hero-text h1 {
+	font-size: 2.666665em;
+	font-weight: 700;
+	text-transform: capitalize;
+	margin: 0;
+}
+
+.hero-text p {
+	font-size: 1em;
+	max-width: 678px;
+	font-weight: 500;
+	line-height: 23px;
+	letter-spacing: 0.2px;
+	word-spacing: 2px;
+	margin: 18px 0 0 0;
+}
+
+@media only screen and (max-width: 768px) {
+	.video-container button {
+		top: -15%;
+		padding: 0 5px;
+	}
+
+	.hero-text h1 {
+		font-size: 2em;
+	}
+
+	.hero-text p {
+		line-height: 19px;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin: 10px 0 0 0;
+	}
+}
+
+@media only screen and (max-width: 576px) {
+	.video-container {
+		margin-bottom: -5.5%;
+	}
+
+	.video-container button {
+		display: none;
+	}
+
+	.hero-text p {
+		margin: 5px 0 0 0;
+	}
+
+	.hero-text {
+		bottom: 15%;
+	}
+}
+
+@media only screen and (max-width: 414px) {
+	.video-container {
+		margin-bottom: 0%;
+	}
+
+	.hero-text {
+		left: 4%;
+		right: 4%;
+		bottom: 7%;
+	}
+
+	.hero-text p {
+		margin: 5px 0 0 0;
+	}
+}

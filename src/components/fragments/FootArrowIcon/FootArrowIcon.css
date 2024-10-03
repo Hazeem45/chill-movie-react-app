@@ -1,0 +1,25 @@
+.arrow-footer span {
+	display: none;
+	position: absolute;
+	top: 10px;
+	right: 5px;
+	width: 10px;
+	height: 2px;
+	background-color: rgba(255, 255, 255, 1);
+	border-radius: 3px;
+	transition: 0.3s;
+}
+
+.arrow-footer span:first-child {
+	transform: rotate(-45deg) translate(-5px, 4px);
+}
+
+.arrow-footer span:last-child {
+	transform: rotate(45deg) translate(0px, 0.5px);
+}
+
+@media only screen and (max-width: 576px) {
+	.arrow-footer span {
+		display: block;
+	}
+}

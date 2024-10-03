@@ -7,7 +7,7 @@ function AuthHeader({ title }) {
 		<div className='title'>
 			<Image source={Logo} />
 			<h1>{title === 'login' ? 'Masuk' : 'Daftar'}</h1>
-			<p>selamat datang{title === 'login' ? ' Kembali' : '!'}</p>
+			<p>selamat datang{title === 'login' && ' Kembali'}!</p>
 		</div>
 	);
 }

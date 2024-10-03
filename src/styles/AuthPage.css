@@ -155,7 +155,7 @@ div.option-auth a {
 	color: white;
 }
 
-button {
+.form-container button {
 	text-transform: capitalize;
 	width: 100%;
 	font-size: 16px;

@@ -1,0 +1,115 @@
+section {
+	width: 100%;
+	padding: 0 6%;
+	box-sizing: border-box;
+}
+
+section .carousel-container {
+	position: relative;
+	padding: 20px 0;
+}
+
+section:nth-child(3) .carousel-container {
+	padding-top: 0px;
+}
+
+.carousel-container button:last-child {
+	transform: rotate(180deg);
+}
+
+.carousel-container h2 {
+	font-size: 1.777775em;
+	font-weight: 700;
+	margin: 20px 0;
+}
+
+section:nth-child(3) .carousel-container h2 {
+	margin-top: 20px;
+}
+
+.carousel {
+	display: flex;
+	gap: 24px;
+	overflow-x: auto;
+	scroll-behavior: smooth;
+	padding: 10px 0;
+	scrollbar-width: none;
+}
+
+.poster {
+	gap: 28px;
+}
+
+.carousel::-webkit-scrollbar {
+	display: none;
+}
+
+.carousel-container .prev,
+.carousel-container .next {
+	width: 44px;
+	height: 44px;
+	display: grid;
+	place-items: center;
+	background-color: #2f3334;
+	border: none;
+	color: white;
+	padding: 10px;
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	border-radius: 50%;
+	border: 1px solid #e7e3fc3b;
+	z-index: 2;
+	transition: 0.2s;
+}
+
+.carousel-container .prev:active {
+	transform: scale(0.9);
+}
+
+.carousel-container .next:active {
+	transform: scale(0.9) rotate(180deg) !important;
+}
+
+.carousel-container .prev {
+	left: -23px;
+}
+
+.carousel-container .next {
+	right: -23px;
+}
+
+.scroll-poster {
+	top: 55% !important;
+}
+
+@media only screen and (max-width: 768px) {
+	section .carousel-container {
+		padding-top: 10px;
+	}
+
+	.carousel-container h2 {
+		font-size: 1.65em;
+		margin-top: 0;
+	}
+
+	.carousel,
+	.poster {
+		gap: 16px;
+	}
+
+	.scroll-poster {
+		top: 50% !important;
+	}
+}
+
+@media only screen and (max-width: 576px) {
+	section {
+		padding-right: 0;
+	}
+
+	.carousel-container .prev,
+	.carousel-container .next {
+		display: none;
+	}
+}
