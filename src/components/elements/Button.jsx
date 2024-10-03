@@ -10,7 +10,7 @@ function Button({ handleClick, classBtn, children }) {
 
 Button.propTypes = {
 	handleClick: PropTypes.func,
-	classBtn: PropTypes.string.isRequired,
+	classBtn: PropTypes.string,
 	children: PropTypes.node,
 };
 
