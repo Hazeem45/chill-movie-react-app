@@ -1,8 +1,9 @@
-import GoogleIcon from '../../assets/img/google-icon.png';
-import Button from '../elements/Button';
-import Image from '../elements/Image';
+import GoogleIcon from '../../../assets/img/google-icon.png';
+import Button from '../../elements/Button';
+import Image from '../../elements/Image';
+import './ThirdPartyAuth.css';
 
-function AuthThirdParty() {
+function ThirdPartyAuth() {
 	return (
 		<div>
 			<div className='button-separator'>atau</div>
@@ -14,4 +15,4 @@ function AuthThirdParty() {
 	);
 }
 
-export default AuthThirdParty;
+export default ThirdPartyAuth;

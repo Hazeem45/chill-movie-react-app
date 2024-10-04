@@ -15,8 +15,17 @@ a {
 }
 
 div,
-img {
+img,
+button {
 	-webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+	margin: 0;
 }
 
 @media only screen and (max-width: 1200px) {

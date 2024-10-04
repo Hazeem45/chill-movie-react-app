@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import AuthLayout from '../components/templates/AuthLayout';
-import LoginForm from '../components/modules/LoginForm';
+import AuthTemplate from '../components/templates/AuthTemplate/AuthTemplate';
+import FormLogin from '../components/modules/FormAuth/FormLogin';
 
 function Login() {
 	useEffect(() => {
@@ -8,9 +8,9 @@ function Login() {
 	}, []);
 
 	return (
-		<AuthLayout title='login'>
-			<LoginForm />
-		</AuthLayout>
+		<AuthTemplate title='login'>
+			<FormLogin />
+		</AuthTemplate>
 	);
 }
 

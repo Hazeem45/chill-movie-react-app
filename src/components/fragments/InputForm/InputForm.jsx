@@ -1,7 +1,9 @@
-import Label from '../elements/Label';
-import Input from '../elements/Input';
+import Label from '../../elements/Label';
+import Input from '../../elements/Input';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import './InputForm.css';
+import Icon from '../../elements/Icon';
 
 function InputForm({ name, inputType, placeholder, handleChange }) {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -22,7 +24,7 @@ function InputForm({ name, inputType, placeholder, handleChange }) {
 			<Input id={name} type={inputType ? inputType : inputPassword} placeholder={placeholder} handleChange={handleChange} isRequired={true} />
 			{!inputType && (
 				<span className='password-toggle-icon' onClick={handleClickIconPassword}>
-					<i className={`fa ${isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'}`}></i>
+					<Icon iconClass={isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'} />
 				</span>
 			)}
 		</div>

@@ -1,0 +1,83 @@
+.form-container form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	margin-top: 35px;
+}
+
+.form-box {
+	width: 100%;
+	display: grid;
+	gap: 25px;
+	position: relative;
+}
+
+.register-box {
+	gap: 20px;
+}
+
+div.option-auth,
+div.option-auth p {
+	display: inline;
+}
+
+div.option-auth {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 10px;
+}
+
+div.option-auth p {
+	font-weight: 400;
+	color: #c1c2c4;
+	margin-right: 5px;
+}
+
+div.option-auth a {
+	font-weight: 600;
+	color: white;
+}
+
+button.submit-auth {
+	background-color: #3d4142;
+	margin-top: 35px;
+	display: grid;
+	place-content: center;
+}
+
+.form-container form.register,
+button.submit-auth.register {
+	margin-top: 25px;
+}
+
+@media only screen and (max-width: 576px) {
+	.form-container form {
+		margin-top: 30px;
+	}
+
+	.form-box {
+		gap: 20px;
+	}
+
+	.register-box {
+		gap: 15px;
+	}
+
+	button.submit-auth {
+		margin-top: 30px;
+	}
+
+	.form-container form.register,
+	button.submit-auth.register {
+		margin-top: 20px;
+	}
+}
+
+@media only screen and (max-width: 375px) {
+	div.option-auth {
+		flex-direction: column-reverse;
+		gap: 5px;
+	}
+}

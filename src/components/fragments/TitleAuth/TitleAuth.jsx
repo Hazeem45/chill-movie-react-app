@@ -1,8 +1,9 @@
-import Image from '../elements/Image';
-import Logo from '../../assets/svg/logo.svg';
+import Image from '../../elements/Image';
+import Logo from '../../../assets/svg/logo.svg';
 import PropTypes from 'prop-types';
+import './TitleAuth.css';
 
-function AuthHeader({ title }) {
+function TitleAuth({ title }) {
 	return (
 		<div className='title'>
 			<Image source={Logo} />
@@ -12,8 +13,8 @@ function AuthHeader({ title }) {
 	);
 }
 
-AuthHeader.propTypes = {
+TitleAuth.propTypes = {
 	title: PropTypes.string.isRequired,
 };
 
-export default AuthHeader;
+export default TitleAuth;

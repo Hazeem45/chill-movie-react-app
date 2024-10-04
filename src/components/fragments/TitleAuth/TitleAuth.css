@@ -1,0 +1,24 @@
+.title {
+	text-align: center;
+	text-transform: capitalize;
+}
+
+.title h1 {
+	font-weight: 700;
+	margin: 10px 0 5px;
+}
+
+.title p {
+	font-weight: 400;
+	margin: 0;
+}
+
+@media only screen and (max-width: 576px) {
+	.title img {
+		width: 140px;
+	}
+
+	.title h1 {
+		margin-bottom: 2.5px;
+	}
+}

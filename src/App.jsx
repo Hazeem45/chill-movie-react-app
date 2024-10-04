@@ -1,6 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './styles/App.css';
-import './styles/AuthPage.css';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Homepage from './pages/Homepage';
@@ -10,7 +9,8 @@ function App() {
 		<Routes>
 			<Route path='/login' element={<Login />} />
 			<Route path='/register' element={<Register />} />
-			<Route path='/' element={<Homepage />} />
+			<Route path='/home' element={<Homepage />} />
+			<Route path='/' element={<Navigate to={'/home'} replace />} />
 		</Routes>
 	);
 }
