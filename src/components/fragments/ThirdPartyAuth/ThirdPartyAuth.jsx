@@ -6,10 +6,10 @@ import './ThirdPartyAuth.css';
 function ThirdPartyAuth() {
 	return (
 		<div>
-			<div className='button-separator'>atau</div>
+			<div className='button-separator'>or</div>
 			<Button classBtn='google-auth' handleClick={() => alert('this feature is under development')}>
 				<Image source={GoogleIcon} width='18' />
-				<p>masuk dengan google</p>
+				<p>continue with google</p>
 			</Button>
 		</div>
 	);

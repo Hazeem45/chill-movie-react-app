@@ -16,19 +16,19 @@ function FormRegister() {
 			id: 1,
 			name: 'username',
 			inputType: 'text',
-			placeholder: 'Masukkan Username',
+			placeholder: 'Enter Username',
 		},
 		{
 			id: 2,
 			name: 'password',
 			inputType: undefined,
-			placeholder: 'Masukkan Password',
+			placeholder: 'Enter Password',
 		},
 		{
 			id: 3,
 			name: 'confirmPassword',
 			inputType: undefined,
-			placeholder: 'Masukkan Ulang Password',
+			placeholder: 'Re-Enter Password',
 		},
 	];
 
@@ -55,11 +55,11 @@ function FormRegister() {
 			</div>
 			<div className='option-auth'>
 				<div>
-					<p>Sudah punya akun?</p>
-					<Link to={'/login'}>Masuk</Link>
+					<p>Already have an account?</p>
+					<Link to={'/login'}>Login</Link>
 				</div>
 			</div>
-			<Button classBtn='submit-auth register'>Daftar</Button>
+			<Button classBtn='submit-auth register'>Register</Button>
 		</form>
 	);
 }

@@ -292,10 +292,10 @@ function MainTemplate() {
 		<>
 			<NavBar />
 			<HeroSection />
-			<Carousel title={'Melanjutan Film'} films={filmsWatched} />
-			<Carousel title={'Top Rating Film dan Series Hari Ini'} films={filmsTopRating} />
-			<Carousel title={'Film Trending'} films={filmsTrending} />
-			<Carousel title={'Rilis Baru'} films={newRelease} />
+			<Carousel title={'Continue Watching'} films={filmsWatched} />
+			<Carousel title={'Movies and Series of the Day'} films={filmsTopRating} />
+			<Carousel title={'Trending Movies'} films={filmsTrending} />
+			<Carousel title={'New Release'} films={newRelease} />
 			<Footer />
 		</>
 	);

@@ -42,20 +42,20 @@ function Footer() {
 						<h3>Genre</h3>
 					</div>
 					<ul className='footer-list'>
-						<li>Aksi</li>
-						<li>Anak-anak</li>
+						<li>Action</li>
+						<li>Adventure</li>
 						<li>Anime</li>
-						<li>Britania</li>
+						<li>Children</li>
+						<li>Comedi</li>
+						<li>Crime</li>
+						<li>British</li>
 						<li>Drama</li>
-						<li>Fantasi Ilmiah</li>
-						<li>Kejahatan</li>
 						<li>KDrama</li>
-						<li>Komedi</li>
-						<li>Petualangan</li>
-						<li>Perang</li>
-						<li>Romantis</li>
-						<li>Sains & Alam</li>
+						<li>Romatic</li>
+						<li>Scientific Fantasy</li>
+						<li>Science & Nature</li>
 						<li>Thriller</li>
+						<li>War</li>
 					</ul>
 				</div>
 				<div className='footer-column'>
@@ -65,9 +65,9 @@ function Footer() {
 					</div>
 					<ul className='footer-list'>
 						<li>FAQ</li>
-						<li>Kontak Kami</li>
-						<li>Privasi</li>
-						<li>Syarat & Ketentuan</li>
+						<li>Contact Us</li>
+						<li>Privacy</li>
+						<li>Terms & Conditions</li>
 					</ul>
 				</div>
 			</div>

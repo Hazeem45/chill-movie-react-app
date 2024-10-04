@@ -9,10 +9,10 @@ import PropTypes from 'prop-types';
 function ActionHero({ isVolumeOn, handleClickVolume }) {
 	return (
 		<div className='action-hero'>
-			<Button>mulai</Button>
+			<Button>start</Button>
 			<Button>
 				<Image source={InfoIcon} alt={'info-icon'} />
-				<span>selengkapnya</span>
+				<span>see more</span>
 			</Button>
 			<span className='age-rating'>18+</span>
 			<span id='volume-icon' className='volume-icon' onClick={handleClickVolume}>

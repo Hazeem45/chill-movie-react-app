@@ -7,8 +7,8 @@ function TitleAuth({ title }) {
 	return (
 		<div className='title'>
 			<Image source={Logo} />
-			<h1>{title === 'login' ? 'Masuk' : 'Daftar'}</h1>
-			<p>selamat datang{title === 'login' && ' Kembali'}!</p>
+			<h1>{title === 'login' ? 'Sign In' : 'Sign Up'}</h1>
+			<p>{title === 'login' ? 'welcome back' : 'register to access all features'}!</p>
 		</div>
 	);
 }

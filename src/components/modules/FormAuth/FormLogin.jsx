@@ -15,13 +15,13 @@ function FormLogin() {
 			id: 1,
 			name: 'username',
 			inputType: 'text',
-			placeholder: 'Masukkan Username',
+			placeholder: 'Enter Username',
 		},
 		{
 			id: 2,
 			name: 'password',
 			inputType: undefined,
-			placeholder: 'Masukkan Password',
+			placeholder: 'Enter Password',
 		},
 	];
 
@@ -42,12 +42,12 @@ function FormLogin() {
 			</div>
 			<div className='option-auth'>
 				<div>
-					<p>Belum punya akun?</p>
-					<Link to={'/register'}>Daftar</Link>
+					<p>Don&#39;t have an account?</p>
+					<Link to={'/register'}>Register</Link>
 				</div>
-				<Link>Lupa kata sandi?</Link>
+				<Link>Forgot password?</Link>
 			</div>
-			<Button classBtn='submit-auth'>masuk</Button>
+			<Button classBtn='submit-auth'>login</Button>
 		</form>
 	);
 }
