@@ -37,9 +37,9 @@ export default [
 			'object-curly-spacing': ['error', 'always'],
 			'react/prop-types': ['error'],
 			'semi': ['error', 'always'],
-			'space-before-function-paren': ['error', 'never'],
+			// 'space-before-function-paren': ['error', 'never'],
 			'comma-dangle': ['error', 'always-multiline'],
-			'camelcase': 'error',
+			// 'camelcase': 'error',
 			'jsx-quotes': ['error', 'prefer-single'],
 			'react/function-component-definition': [
 				'error',
