@@ -174,7 +174,7 @@ function CollectionProvider({ children }) {
 		};
 
 		fetchCollection();
-	}, []);
+	}, [apiKey]);
 
 	return <CollectionContext.Provider value={{ collection }}>{children}</CollectionContext.Provider>;
 }
