@@ -15,8 +15,17 @@ a {
 }
 
 div,
-img {
+img,
+button {
 	-webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+	margin: 0;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -41,19 +50,5 @@ img {
 @media only screen and (max-width: 375px) {
 	body {
 		font-size: 13px;
-	}
-}
-
-@keyframes dropdown {
-	0% {
-		opacity: 0;
-		transform: translateY(-100%);
-		display: none;
-	}
-	50% {
-		opacity: 0;
-	}
-	100% {
-		transform: translateY(0%);
 	}
 }

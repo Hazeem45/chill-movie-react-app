@@ -6,15 +6,15 @@ import VolumeOnIcon from '../../../assets/svg/volume-on.svg';
 import './ActionHero.css';
 import PropTypes from 'prop-types';
 
-function ActionHero({ isVolumeOn, handleClickVolume }) {
+function ActionHero({ isVolumeOn, ageRating, handleClickVolume }) {
 	return (
 		<div className='action-hero'>
-			<Button>mulai</Button>
+			<Button>start</Button>
 			<Button>
 				<Image source={InfoIcon} alt={'info-icon'} />
-				<span>selengkapnya</span>
+				<span>see more</span>
 			</Button>
-			<span className='age-rating'>18+</span>
+			<span className='age-rating'>{ageRating}</span>
 			<span id='volume-icon' className='volume-icon' onClick={handleClickVolume}>
 				{isVolumeOn ? <Image source={VolumeOnIcon} alt={'volume'} /> : <Image source={VolumeOffIcon} alt={'volume'} />}
 			</span>
@@ -24,6 +24,7 @@ function ActionHero({ isVolumeOn, handleClickVolume }) {
 
 ActionHero.propTypes = {
 	isVolumeOn: PropTypes.bool.isRequired,
+	ageRating: PropTypes.string.isRequired,
 	handleClickVolume: PropTypes.func.isRequired,
 };
 

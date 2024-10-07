@@ -14,19 +14,19 @@ function DropdownProfile() {
 				<li>
 					<Link>
 						<Icon iconClass='fa-user' iconStyle={{ fontSize: iconStyle.fontSize, marginRight: iconStyle.margin }} />
-						<p>profil saya</p>
+						<p>my profile</p>
 					</Link>
 				</li>
 				<li>
 					<Link>
 						<Icon iconClass='fa-star' iconStyle={{ fontSize: iconStyle.fontSize, marginLeft: `-${iconStyle.margin}`, color: 'gold' }} />
-						<p>ubah premium</p>
+						<p>premium plan</p>
 					</Link>
 				</li>
 				<li>
 					<Link to={'/login'}>
 						<Icon iconClass='fa-sign-out' iconStyle={{ fontSize: iconStyle.fontSize, marginTop: iconStyle.margin }} />
-						<p>keluar</p>
+						<p>logout</p>
 					</Link>
 				</li>
 			</ul>

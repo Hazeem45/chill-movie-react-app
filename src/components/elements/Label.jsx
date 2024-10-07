@@ -4,10 +4,9 @@ function Label({ htmlFor, value }) {
 	return <label htmlFor={htmlFor}>{value}</label>;
 }
 
-const type = PropTypes.string.isRequired;
 Label.propTypes = {
-	htmlFor: type,
-	value: type,
+	htmlFor: PropTypes.string.isRequired,
+	value: PropTypes.string.isRequired,
 };
 
 export default Label;

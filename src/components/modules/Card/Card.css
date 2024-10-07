@@ -11,7 +11,7 @@
 .carousel-poster-item {
 	flex: 0 0 auto;
 	width: 234px;
-	height: 365px;
+	height: auto;
 	text-align: center;
 	position: relative;
 	transition: 0.2s;
@@ -41,11 +41,6 @@
 	background-image: linear-gradient(0deg, rgba(24, 26, 28, 0.4) 0%, rgba(24, 26, 28, 0.2) 30%, rgba(24, 26, 28, 0) 100%);
 }
 
-.carousel-item:hover,
-.carousel-poster-item:hover {
-	transform: scale(1.05);
-}
-
 .carousel-item p:nth-child(3) {
 	left: 7px;
 	max-width: 230px;
@@ -65,20 +60,44 @@
 	right: 7px;
 }
 
+@media only screen and (max-width: 1600px) {
+	.carousel-poster-item {
+		width: 184px;
+	}
+
+	.carousel-item-hover {
+		top: -11%;
+		left: -37%;
+		width: 320px;
+		min-height: 360px;
+		max-height: 360px;
+	}
+}
+
 @media only screen and (max-width: 768px) {
 	.carousel-poster-item {
-		width: 164.7px;
-		height: 254.2px;
+		width: 163px;
+	}
+
+	.carousel-item-hover {
+		top: -8%;
+		left: -35%;
+		width: 279px;
+		min-height: 300px;
+		max-height: 300px;
 	}
 }
 
 @media only screen and (max-width: 576px) {
 	.carousel-poster-item {
-		width: 95.6px;
-		height: 143.39px;
+		width: 100px;
 	}
 
 	.carousel-poster-item img {
 		border-radius: 5px;
+	}
+
+	.carousel-poster-item:hover {
+		transform: scale(1.1);
 	}
 }

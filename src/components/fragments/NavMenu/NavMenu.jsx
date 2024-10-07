@@ -12,8 +12,8 @@ function NavMenu() {
 				<Image source={Icon} className={'logo-without-text'} />
 			</Link>
 			<Link>series</Link>
-			<Link>film</Link>
-			<Link>daftar saya</Link>
+			<Link>movies</Link>
+			<Link>my list</Link>
 		</div>
 	);
 }

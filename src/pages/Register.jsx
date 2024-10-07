@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import AuthLayout from '../components/templates/AuthLayout';
-import RegisterForm from '../components/modules/RegisterForm';
+import AuthTemplate from '../components/templates/AuthTemplate/AuthTemplate';
+import FormRegister from '../components/modules/FormAuth/FormRegister';
 
 function Register() {
 	useEffect(() => {
@@ -8,9 +8,9 @@ function Register() {
 	}, []);
 
 	return (
-		<AuthLayout title='register'>
-			<RegisterForm />
-		</AuthLayout>
+		<AuthTemplate title='register'>
+			<FormRegister />
+		</AuthTemplate>
 	);
 }
 

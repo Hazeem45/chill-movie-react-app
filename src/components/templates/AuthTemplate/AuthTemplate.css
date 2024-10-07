@@ -1,0 +1,73 @@
+.container {
+	min-height: 100dvh;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position-y: -10;
+	background-position: center;
+	display: grid;
+	place-content: center;
+}
+
+.bg-login {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../../../assets/img/bg-login.jpeg);
+}
+
+.bg-register {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../../../assets/img/bg-register.jpeg);
+}
+
+.form-container {
+	padding: 1.944444em 1.666666em;
+	min-width: 27rem;
+	min-height: 37em;
+	position: relative;
+	box-sizing: border-box;
+	border-radius: 16px;
+	background-color: rgba(24, 26, 28, 0.839);
+	backdrop-filter: blur(2px);
+}
+
+.form-register {
+	padding: 1.1111em 1.666666em;
+}
+
+.form-container button {
+	text-transform: capitalize;
+	width: 100%;
+	font-size: 1em;
+	height: 43px;
+	border-radius: 24px;
+	background-color: transparent;
+	border: 1px solid #e7e3fc3b;
+	padding: 0.7777777777777778em 1.1111111111111112em;
+	color: white;
+	box-sizing: border-box;
+	cursor: pointer;
+	gap: 10px;
+}
+
+.form-container button:hover {
+	background-color: black;
+}
+
+.form-container button:active {
+	transform: scale(0.97);
+}
+
+@media only screen and (max-width: 576px) {
+	.form-container {
+		border-radius: 12px;
+	}
+
+	.form-container button {
+		height: 38px;
+		gap: 5px;
+	}
+}
+
+@media only screen and (max-width: 467px) {
+	.form-container {
+		min-width: 90vw;
+		border-radius: 12px;
+	}
+}

@@ -1,7 +1,17 @@
+import { useEffect } from 'react';
 import MainTemplate from '../components/templates/MainTemplate';
+import CollectionProvider from '../context/CollectionContext';
 
 function Homepage() {
-	return <MainTemplate />;
+	useEffect(() => {
+		document.title = 'Chill | Home';
+	}, []);
+
+	return (
+		<CollectionProvider>
+			<MainTemplate />
+		</CollectionProvider>
+	);
 }
 
 export default Homepage;

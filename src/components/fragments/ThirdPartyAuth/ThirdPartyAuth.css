@@ -1,0 +1,21 @@
+.button-separator {
+	text-transform: capitalize;
+	font-weight: 400;
+	font-size: 0.777777em;
+	color: lightgray;
+	text-align: center;
+	margin: 15px 0;
+}
+
+button.google-auth,
+button.google-auth p {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@media only screen and (max-width: 576px) {
+	.button-separator {
+		margin: 10px 0;
+	}
+}
