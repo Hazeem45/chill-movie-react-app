@@ -1,0 +1,122 @@
+.carousel-item-hover {
+	z-index: 2;
+	position: absolute;
+	top: -7%;
+	left: -25%;
+	width: 350px;
+	min-height: 410px;
+	max-height: 410px;
+	height: auto;
+	background-color: #181a1c;
+	border-radius: 10px;
+	box-shadow: 0px 0px 15px -5px #ffffff3a;
+}
+
+.first-item-hover {
+	animation: firstItemHover 0.2s ease-out forwards;
+}
+
+.item-hover {
+	animation: itemHover 0.2s ease-in-out forwards;
+}
+
+.last-item-hover {
+	animation: lastItemHover 0.2s ease-out forwards;
+}
+
+.action-hover {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 1em;
+	padding-top: 0.5em;
+	display: grid;
+	gap: 15px;
+}
+
+.action-hover .button-action {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 15px;
+}
+
+.action-hover .genre-item {
+	display: flex;
+	justify-content: space-between;
+	color: #c1c2c4;
+}
+
+.action-hover .description-hover {
+	display: flex;
+	gap: 15px;
+	align-items: center;
+}
+
+.action-hover .description-hover div {
+	color: #c1c2c4;
+	background-color: #cdf1ff4d;
+	border-radius: 30px;
+	padding: 0.2222222222222222em 0.6666666666666666em;
+}
+
+.carousel-item-hover img {
+	width: 100%;
+	height: 80%;
+	border-radius: 10px 10px 0 0 !important;
+}
+
+.hover-backdrop-info p {
+	position: absolute;
+	bottom: 50%;
+	margin: 0;
+	color: #ffffff;
+}
+
+.hover-backdrop-info .overlay {
+	position: absolute;
+	bottom: 50%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: linear-gradient(0deg, rgba(24, 26, 28, 1) 0%, rgba(24, 26, 28, 0.4) 20%, rgba(24, 26, 28, 0) 100%);
+	/* background-color: red; */
+}
+
+.hover-backdrop-info p.title {
+	left: 7px;
+	max-width: 230px;
+	font-weight: 700;
+	font-size: 18px;
+	text-align: left;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.hover-backdrop-info p.rating {
+	font-size: 14px;
+	font-weight: 400;
+	right: 7px;
+}
+
+@media only screen and (max-width: 1600px) {
+	.carousel-item-hover {
+		top: -11%;
+		left: -37%;
+		width: 320px;
+		min-height: 360px;
+		max-height: 360px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.carousel-item-hover {
+		top: -8%;
+		left: -35%;
+		width: 279px;
+		min-height: 300px;
+		max-height: 300px;
+	}
+}

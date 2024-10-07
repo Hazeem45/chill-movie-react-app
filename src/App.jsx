@@ -1,8 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import './styles/App.css';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Homepage from './pages/Homepage';
+import './styles/Animation.css';
+import './styles/App.css';
 
 function App() {
 	return (

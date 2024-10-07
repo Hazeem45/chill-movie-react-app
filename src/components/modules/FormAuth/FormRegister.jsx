@@ -32,9 +32,9 @@ function FormRegister() {
 		},
 	];
 
-	function handleChangeInputForm(e) {
+	const handleChangeInputForm = e => {
 		setValues({ ...values, [e.target.id]: e.target.value });
-	}
+	};
 
 	return (
 		<form

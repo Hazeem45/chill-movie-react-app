@@ -1,20 +1,26 @@
 import { useRef } from 'react';
-import MovieCard from '../../fragments/MovieCard/MovieCard';
+import Card from '../Card/Card';
 import PropTypes from 'prop-types';
 import ArrowIcon from '../../../assets/svg/arrow.svg';
 import Image from '../../elements/Image';
 import Button from '../../elements/Button';
 import './Carousel.css';
 
-function Carousel({ title, films }) {
+function Carousel({ title, films, isContinueWatch }) {
 	const carouselRef = useRef(null);
 
 	const scrollNext = () => {
-		carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+		const containerWidth = carouselRef.current.getBoundingClientRect().width;
+		const cardWidth = carouselRef.current.firstChild.getBoundingClientRect().width;
+		const visibleItems = Math.floor(containerWidth / cardWidth);
+		carouselRef.current.scrollBy({ left: visibleItems * cardWidth, behavior: 'smooth' });
 	};
 
 	const scrollPrev = () => {
-		carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+		const containerWidth = carouselRef.current.getBoundingClientRect().width;
+		const cardWidth = carouselRef.current.firstChild.getBoundingClientRect().width;
+		const visibleItems = Math.floor(containerWidth / cardWidth);
+		carouselRef.current.scrollBy({ left: -visibleItems * cardWidth, behavior: 'smooth' });
 	};
 
 	const handleWheel = event => {
@@ -25,15 +31,15 @@ function Carousel({ title, films }) {
 		<section>
 			<div className='carousel-container'>
 				<h2>{title}</h2>
-				<Button classBtn={`prev ${films[0].poster && 'scroll-poster'}`} handleClick={scrollPrev}>
+				<Button classBtn={`prev ${!isContinueWatch && 'scroll-poster'}`} handleClick={scrollPrev}>
 					<Image source={ArrowIcon} alt={'PrevIcon'} />
 				</Button>
-				<div className={`carousel ${films[0].poster && 'poster'}`} ref={carouselRef} onWheel={handleWheel}>
+				<div className={'carousel'} ref={carouselRef} onWheel={handleWheel}>
 					{films.map((film, index) => (
-						<MovieCard key={index} {...film} />
+						<Card key={index} {...film} isContinueWatch={isContinueWatch} order={index + 1} length={films.length} />
 					))}
 				</div>
-				<Button classBtn={`next ${films[0].poster && 'scroll-poster'}`} handleClick={scrollNext}>
+				<Button classBtn={`next ${!isContinueWatch && 'scroll-poster'}`} handleClick={scrollNext}>
 					<Image source={ArrowIcon} alt={'NextIcon'} />
 				</Button>
 			</div>
@@ -44,6 +50,7 @@ function Carousel({ title, films }) {
 Carousel.propTypes = {
 	title: PropTypes.string.isRequired,
 	films: PropTypes.array.isRequired,
+	isContinueWatch: PropTypes.bool,
 };
 
 export default Carousel;

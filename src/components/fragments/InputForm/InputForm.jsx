@@ -31,11 +31,10 @@ function InputForm({ name, inputType, placeholder, handleChange }) {
 	);
 }
 
-const type = PropTypes.string.isRequired;
 InputForm.propTypes = {
-	name: type,
+	name: PropTypes.string.isRequired,
 	inputType: PropTypes.string,
-	placeholder: type,
+	placeholder: PropTypes.string.isRequired,
 	handleChange: PropTypes.func,
 };
 

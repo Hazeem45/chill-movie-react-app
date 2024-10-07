@@ -67,6 +67,22 @@ footer ul {
 	color: white;
 }
 
+div.info {
+	font-size: 0.95em;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	color: #c1c2c4e3;
+	margin: 30px 10%;
+	text-align: center;
+	gap: 10px;
+	cursor: pointer;
+}
+
+div.info img {
+	width: 350px;
+}
+
 /* accordion expand */
 
 .footer-title-list.active .arrow-footer span {
@@ -184,6 +200,14 @@ footer ul {
 
 	.footer-list li {
 		margin-left: 10px;
+	}
+
+	div.info {
+		margin: 30px 5%;
+	}
+
+	div.info img {
+		width: 250px;
 	}
 }
 

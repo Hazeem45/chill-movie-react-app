@@ -4,11 +4,10 @@ function Input({ id, type, placeholder, handleChange, isRequired }) {
 	return <input id={id} type={type} placeholder={placeholder} onChange={handleChange} required={isRequired} />;
 }
 
-const type = PropTypes.string.isRequired;
 Input.propTypes = {
-	id: type,
-	type: type,
-	placeholder: type,
+	id: PropTypes.string.isRequired,
+	type: PropTypes.string.isRequired,
+	placeholder: PropTypes.string.isRequired,
 	handleChange: PropTypes.func,
 	isRequired: PropTypes.bool,
 };

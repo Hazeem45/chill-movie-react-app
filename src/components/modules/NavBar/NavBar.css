@@ -36,10 +36,6 @@ nav {
 	display: block;
 }
 
-.profile-wrap:hover .dropdown {
-	animation: dropdown 0.3s ease;
-}
-
 @media only screen and (max-width: 1200px) {
 	nav {
 		padding: 1em 4.3em;
