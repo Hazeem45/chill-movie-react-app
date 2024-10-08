@@ -5,13 +5,17 @@ import { useEffect, useRef, useState } from 'react';
 import Button from '../../elements/Button';
 import Icon from '../../elements/Icon';
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
+import Image from '../../elements/Image';
 
 function HeroSection({ heroContent }) {
 	const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 	const [isOverviewClicked, setIsOverviewClicked] = useState(false);
 	const [isVolumeOn, setIsVolumeOn] = useState(false);
 	const [isMuted, setIsMuted] = useState(1);
+	const [backdropOpacity, setBackdropOpacity] = useState(1);
 	const userRef = useRef(null);
+	const location = useLocation();
 
 	useEffect(() => {
 		if (isMuted) {
@@ -20,6 +24,14 @@ function HeroSection({ heroContent }) {
 			setIsVolumeOn(true);
 		}
 	}, [isMuted]);
+
+	const handleBackdrop = () => {
+		setBackdropOpacity(1);
+		const timer = setTimeout(() => {
+			setBackdropOpacity(0);
+		}, 2000);
+		return () => clearTimeout(timer);
+	};
 
 	const handleClickVolume = () => {
 		if (userRef.current) {
@@ -33,6 +45,7 @@ function HeroSection({ heroContent }) {
 	};
 
 	const handleVideoEnd = () => {
+		handleBackdrop();
 		setCurrentVideoIndex(prevIndex => (prevIndex + 1) % heroContent.length);
 		setIsOverviewClicked(false);
 		if (isVolumeOn) {
@@ -43,6 +56,7 @@ function HeroSection({ heroContent }) {
 	};
 
 	const handleNext = () => {
+		handleBackdrop();
 		setCurrentVideoIndex(prevIndex => (prevIndex + 1) % heroContent.length);
 		setIsOverviewClicked(false);
 		if (isVolumeOn) {
@@ -53,6 +67,7 @@ function HeroSection({ heroContent }) {
 	};
 
 	const handlePrev = () => {
+		handleBackdrop();
 		setCurrentVideoIndex(prevIndex => (prevIndex - 1 + heroContent.length) % heroContent.length);
 		setIsOverviewClicked(false);
 		if (isVolumeOn) {
@@ -84,24 +99,38 @@ function HeroSection({ heroContent }) {
 			<div className='hero-container'>
 				<div className='overlay-hero'></div>
 				<div className='video-container'>
+					<div className='backdrop' style={{ opacity: backdropOpacity, transition: 'opacity 1s ease' }}>
+						<Image
+							source={heroContent.length > 0 ? heroContent[currentVideoIndex].backdrop : ''}
+							alt={heroContent.length > 0 ? heroContent[currentVideoIndex].title : 'undefined image'}
+						/>
+					</div>
 					<YouTube
 						videoId={heroContent.length > 0 ? heroContent[currentVideoIndex].video : ''}
 						opts={opts}
 						onEnd={handleVideoEnd}
 						onReady={onReady}
 					/>
-					<Button classBtn='prev' handleClick={handlePrev}>
-						<Icon iconClass='fa-angle-double-left' iconStyle={{ fontSize: '36px' }} />
-					</Button>
-					<Button classBtn='next' handleClick={handleNext}>
-						<Icon iconClass='fa-angle-double-right' iconStyle={{ fontSize: '36px' }} />
-					</Button>
+					{location.pathname === '/home' && (
+						<>
+							<Button classBtn='prev' handleClick={handlePrev}>
+								<Icon iconClass='fa-angle-double-left' iconStyle={{ fontSize: '36px' }} />
+							</Button>
+							<Button classBtn='next' handleClick={handleNext}>
+								<Icon iconClass='fa-angle-double-right' iconStyle={{ fontSize: '36px' }} />
+							</Button>
+						</>
+					)}
 				</div>
 				<div className='hero-text'>
-					<h1>{heroContent.length > 0 ? heroContent[currentVideoIndex].title : 'Loading...'}</h1>
-					<p className={isOverviewClicked ? 'active' : undefined} onClick={() => setIsOverviewClicked(prevState => !prevState)}>
-						{heroContent.length > 0 ? heroContent[currentVideoIndex].overview : 'Plase Wait a Second...'}
-					</p>
+					{location.pathname === '/home' && (
+						<>
+							<h1>{heroContent.length > 0 ? heroContent[currentVideoIndex].title : 'Loading...'}</h1>
+							<p className={isOverviewClicked ? 'active' : undefined} onClick={() => setIsOverviewClicked(prevState => !prevState)}>
+								{heroContent.length > 0 ? heroContent[currentVideoIndex].overview : 'Plase Wait a Second...'}
+							</p>
+						</>
+					)}
 					<ActionHero
 						handleClickVolume={handleClickVolume}
 						isVolumeOn={isVolumeOn}
