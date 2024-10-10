@@ -67,7 +67,7 @@ footer ul {
 	color: white;
 }
 
-div.info {
+div.credit-tmdb {
 	font-size: 0.95em;
 	display: flex;
 	align-items: center;
@@ -79,7 +79,7 @@ div.info {
 	cursor: pointer;
 }
 
-div.info img {
+div.credit-tmdb img {
 	width: 350px;
 }
 
@@ -202,11 +202,11 @@ div.info img {
 		margin-left: 10px;
 	}
 
-	div.info {
+	div.credit-tmdb {
 		margin: 30px 5%;
 	}
 
-	div.info img {
+	div.credit-tmdb img {
 		width: 250px;
 	}
 }

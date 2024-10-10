@@ -5,16 +5,27 @@ import VolumeOffIcon from '../../../assets/svg/volume-off.svg';
 import VolumeOnIcon from '../../../assets/svg/volume-on.svg';
 import './ActionHero.css';
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
+import AgeRating from '../../elements/AgeRating/AgeRating';
+import Check from '../Check/Check';
 
-function ActionHero({ isVolumeOn, ageRating, handleClickVolume }) {
+function ActionHero({ isVolumeOn, ageRating, handleClickVolume, handleClickStart }) {
+	const location = useLocation();
+
 	return (
 		<div className='action-hero'>
-			<Button>start</Button>
-			<Button>
-				<Image source={InfoIcon} alt={'info-icon'} />
-				<span>see more</span>
-			</Button>
-			<span className='age-rating'>{ageRating}</span>
+			<Button handleClick={handleClickStart}>start</Button>
+			{location.pathname === '/home' ? (
+				<>
+					<Button>
+						<Image source={InfoIcon} alt={'info-icon'} />
+						<span>see more</span>
+					</Button>
+					<AgeRating ageRating={ageRating} />
+				</>
+			) : (
+				<Check />
+			)}
 			<span id='volume-icon' className='volume-icon' onClick={handleClickVolume}>
 				{isVolumeOn ? <Image source={VolumeOnIcon} alt={'volume'} /> : <Image source={VolumeOffIcon} alt={'volume'} />}
 			</span>
@@ -24,8 +35,9 @@ function ActionHero({ isVolumeOn, ageRating, handleClickVolume }) {
 
 ActionHero.propTypes = {
 	isVolumeOn: PropTypes.bool.isRequired,
-	ageRating: PropTypes.string.isRequired,
+	ageRating: PropTypes.string,
 	handleClickVolume: PropTypes.func.isRequired,
+	handleClickStart: PropTypes.func,
 };
 
 export default ActionHero;

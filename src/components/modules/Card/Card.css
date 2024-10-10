@@ -1,7 +1,7 @@
 .carousel-item {
 	flex: 0 0 auto;
 	width: 302px;
-	height: 162px;
+	height: auto;
 	text-align: center;
 	position: relative;
 	cursor: pointer;

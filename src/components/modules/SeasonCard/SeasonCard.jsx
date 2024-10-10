@@ -1,0 +1,80 @@
+import PropTypes from 'prop-types';
+import Image from '../../elements/Image';
+import Overview from '../../elements/Overview/Overview';
+import { useEffect } from 'react';
+import './SeasonCard.css';
+
+function SeasonCard({ season, index, seasonRefs, setActiveSeason }) {
+	const seasonNumber = `Season ${season.season_number}`;
+	const seasonTitle = season.name;
+
+	useEffect(() => {
+		const observer = new IntersectionObserver(
+			entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						const seasonNumber = parseInt(entry.target.getAttribute('data-season-number'), 10);
+						setActiveSeason(seasonNumber);
+						window.history.replaceState(null, '', `#season-${seasonNumber}`);
+					}
+				});
+			},
+			{
+				threshold: 0.1,
+			},
+		);
+
+		const ref = seasonRefs.current[index];
+		if (ref) observer.observe(ref);
+
+		return () => {
+			if (ref) observer.unobserve(ref);
+		};
+	}, [index, seasonRefs, setActiveSeason]);
+
+	return (
+		<>
+			<h2 className='title-season'>Season {season.season_number}</h2>
+			<div
+				className='season-container'
+				id={`season-${season.season_number}`}
+				data-season-number={season.season_number}
+				ref={el => (seasonRefs.current[index] = el)}
+			>
+				<div className='season-header'>
+					<Image source={`https://image.tmdb.org/t/p/w200${season.poster_path}`} alt={season.name} />
+					<div className='season-info'>
+						<h2>{seasonNumber === seasonTitle ? seasonNumber : `Season ${season.season_number} : ${season.name}`}</h2>
+						<p className='air-date'>{season.air_date}</p>
+						<Overview>{season.overview}</Overview>
+					</div>
+				</div>
+				<div className='episode-list'>
+					{season.episodes.map((episode, index) => (
+						<div key={index} className='episode-container'>
+							<div className='episode-number'>{episode.episode_number}</div>
+							<Image className='episode-image' source={`https://image.tmdb.org/t/p/w200${episode.still_path}`} alt={episode.name} />
+							<div className='episode-details'>
+								<div className='episode-title-wrap'>
+									<h3 className='episode-title'>{episode.name}</h3>
+									<span className='episode-duration'>{episode.runtime}min</span>
+								</div>
+								<Overview>{episode.overview}</Overview>
+								<p className='air-date'>{episode.air_date}</p>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</>
+	);
+}
+
+SeasonCard.propTypes = {
+	season: PropTypes.object.isRequired,
+	index: PropTypes.number.isRequired,
+	seasonRefs: PropTypes.object.isRequired,
+	setActiveSeason: PropTypes.func.isRequired,
+};
+
+export default SeasonCard;

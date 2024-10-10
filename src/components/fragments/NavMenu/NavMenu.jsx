@@ -7,7 +7,7 @@ import './NavMenu.css';
 function NavMenu() {
 	return (
 		<div className='nav-menu'>
-			<Link>
+			<Link to={'/'}>
 				<Image source={Logo} className={'logo-text'} />
 				<Image source={Icon} className={'logo-without-text'} />
 			</Link>

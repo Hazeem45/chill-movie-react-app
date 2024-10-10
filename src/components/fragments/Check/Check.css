@@ -1,0 +1,11 @@
+.check-circle {
+	border: 2px solid rgba(255, 255, 255, 0.8);
+	color: rgb(255, 255, 255, 0.8);
+	border-radius: 50%;
+	width: 37px;
+	height: 37px;
+	display: grid;
+	place-items: center;
+	z-index: 5;
+	font-weight: 100;
+}
