@@ -1,6 +1,7 @@
 section.hero {
 	padding: 0;
 	overflow: hidden;
+	width: 100%;
 }
 
 .hero-container {

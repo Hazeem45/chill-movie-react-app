@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import Button from '../../elements/Button';
 import Icon from '../../elements/Icon';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Image from '../../elements/Image';
 
 function HeroSection({ heroContent }) {
@@ -14,10 +14,12 @@ function HeroSection({ heroContent }) {
 	const [isVolumeOn, setIsVolumeOn] = useState(false);
 	const [isMuted, setIsMuted] = useState(1);
 	const [backdropOpacity, setBackdropOpacity] = useState(1);
+	const navigate = useNavigate();
 	const userRef = useRef(null);
 	const location = useLocation();
 
 	useEffect(() => {
+		handleBackdrop();
 		if (isMuted) {
 			setIsVolumeOn(false);
 		} else {
@@ -82,6 +84,16 @@ function HeroSection({ heroContent }) {
 		userRef.current.setVolume(90);
 	};
 
+	const handleClickStart = () => {
+		if (location.pathname !== '/home') {
+			if (userRef.current) {
+				userRef.current.playVideo();
+			}
+		} else {
+			navigate(`/${heroContent[currentVideoIndex].type}/${heroContent[currentVideoIndex].id}`);
+		}
+	};
+
 	const opts = {
 		height: '100%',
 		width: '100%',
@@ -133,6 +145,7 @@ function HeroSection({ heroContent }) {
 					)}
 					<ActionHero
 						handleClickVolume={handleClickVolume}
+						handleClickStart={handleClickStart}
 						isVolumeOn={isVolumeOn}
 						ageRating={heroContent.length > 0 ? heroContent[currentVideoIndex].ageRating : '---'}
 					/>

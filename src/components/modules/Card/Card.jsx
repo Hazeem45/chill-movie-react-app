@@ -7,15 +7,16 @@ import './Card.css';
 import LabelPremium from '../../elements/LabelFilm/LabelPremium';
 import { useEffect, useState } from 'react';
 import CardHover from '../../fragments/CardHover/CardHover';
+import { useNavigate } from 'react-router-dom';
 
 function Card(props) {
 	const [isHovered, setIsHovered] = useState(false);
 	const [isDisplayedElement, setIsDisplayedElement] = useState(false);
-	const [isChecked, setIsChecked] = useState(false);
 	const [timeoutId, setTimeoutId] = useState(null);
 	const [classHover, setClassHover] = useState('item-hover');
 	const [isMobile, setIsMobile] = useState(false);
 	const {
+		id,
 		order,
 		length,
 		isContinueWatch,
@@ -33,6 +34,7 @@ function Card(props) {
 		episodes,
 		genre,
 	} = props;
+	const navigate = useNavigate();
 
 	const handleResize = () => {
 		const mediaQuery = window.matchMedia('(max-width: 576px)');
@@ -71,7 +73,12 @@ function Card(props) {
 	};
 
 	return (
-		<div className={isContinueWatch ? 'carousel-item' : 'carousel-poster-item'} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+		<div
+			className={isContinueWatch ? 'carousel-item' : 'carousel-poster-item'}
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
+			onClick={() => isMobile && navigate(`/${type}/${id}`)}
+		>
 			<Image source={isContinueWatch ? backdrop : poster} alt={title} />
 			{isPremium && <LabelPremium />}
 			{isTrending && <LabelTrending />}
@@ -88,6 +95,7 @@ function Card(props) {
 			)}
 			{isHovered && !isContinueWatch && !isMobile && (
 				<CardHover
+					id={id}
 					classHover={classHover}
 					isDisplayedElement={isDisplayedElement}
 					backdrop={backdrop}
@@ -95,7 +103,6 @@ function Card(props) {
 					isPremium={isPremium}
 					isTrending={isTrending}
 					newEpisode={newEpisode}
-					isChecked={isChecked}
 					ageRating={ageRating}
 					type={type}
 					duration={duration}
@@ -103,7 +110,6 @@ function Card(props) {
 					episodes={episodes}
 					genre={genre}
 					rating={rating}
-					handleClick={() => setIsChecked(!isChecked)}
 				/>
 			)}
 		</div>
@@ -111,6 +117,7 @@ function Card(props) {
 }
 
 Card.propTypes = {
+	id: PropTypes.number,
 	poster: PropTypes.string.isRequired,
 	backdrop: PropTypes.string.isRequired,
 	rating: PropTypes.string.isRequired,

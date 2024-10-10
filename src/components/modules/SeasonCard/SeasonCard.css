@@ -1,0 +1,124 @@
+h2.title-season {
+	position: sticky;
+	top: 10%;
+	background-color: #181a1c;
+	border-radius: 5px;
+	z-index: 1;
+	padding: 5px 7px;
+	margin-bottom: -3em;
+	max-width: fit-content;
+}
+
+.season-container {
+	padding-top: 5em;
+}
+
+.season-header:hover {
+	background-color: #424242;
+}
+
+.season-header {
+	display: flex;
+	align-items: center;
+	height: auto;
+	box-shadow: 0 0 13px -3px rgba(255, 255, 255, 0.5);
+	cursor: pointer;
+}
+
+.season-header img {
+	max-width: 100px;
+	margin-right: 1em;
+}
+
+.episode-list {
+	margin-top: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.episode-container {
+	display: flex;
+	padding: 10px 7px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 4px;
+	position: relative;
+}
+
+.episode-container:hover {
+	background-color: #424242;
+}
+
+.episode-number {
+	font-size: 1em;
+	min-width: 50px;
+	max-width: 50px;
+	align-self: center;
+}
+
+.episode-image {
+	min-width: 160px;
+	max-width: 160px;
+	height: 90px;
+	margin-right: 20px;
+	align-self: center;
+}
+
+.episode-details {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 3px;
+}
+
+.episode-title-wrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.episode-title {
+	font-size: 1.2em;
+	font-weight: bold;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.episode-duration,
+.air-date {
+	font-size: 0.9em;
+}
+
+@media only screen and (max-width: 992px) {
+	.episode-image {
+		min-width: 150px;
+		max-width: 150px;
+		height: 85px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.episode-image {
+		min-width: 130px;
+		max-width: 130px;
+		height: 70px;
+	}
+}
+
+@media only screen and (max-width: 576px) {
+	.episode-image {
+		min-width: 100px;
+		max-width: 100px;
+		height: 60px;
+	}
+
+	.episode-number {
+		position: absolute;
+		top: 5px;
+		min-width: auto;
+		max-width: auto;
+	}
+}

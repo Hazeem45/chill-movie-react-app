@@ -1,0 +1,14 @@
+p.overview {
+	font-size: 0.95em;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+
+p.overview.expanded {
+	display: block;
+	-webkit-line-clamp: unset;
+}

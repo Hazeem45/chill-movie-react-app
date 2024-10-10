@@ -5,9 +5,12 @@ import Icon from '../../elements/Icon';
 import Image from '../../elements/Image';
 import './CardHover.css';
 import PropTypes from 'prop-types';
+import Check from '../Check/Check';
+import { useNavigate } from 'react-router-dom';
 
 function CardHover(props) {
 	const {
+		id,
 		classHover,
 		isDisplayedElement,
 		backdrop,
@@ -15,7 +18,6 @@ function CardHover(props) {
 		isPremium,
 		isTrending,
 		newEpisode,
-		isChecked,
 		ageRating,
 		type,
 		duration,
@@ -23,8 +25,12 @@ function CardHover(props) {
 		episodes,
 		genre,
 		rating,
-		handleClick,
 	} = props;
+	const navigate = useNavigate();
+
+	const handleClick = () => {
+		navigate(`/${type}/${id}`);
+	};
 
 	return (
 		<div className={`carousel-item-hover ${classHover}`} style={{ display: !isDisplayedElement && 'none' }}>
@@ -32,7 +38,7 @@ function CardHover(props) {
 			{isPremium && <LabelPremium />}
 			{isTrending && <LabelTrending />}
 			{newEpisode && <LabelNewEpisode />}
-			<div className='hover-backdrop-info'>
+			<div className='hover-backdrop-info' onClick={handleClick}>
 				<div className='overlay'></div>
 				<p className='title'>{title}</p>
 				<p className='rating'>
@@ -42,23 +48,12 @@ function CardHover(props) {
 			</div>
 			<div className='action-hover'>
 				<div className='button-action'>
-					<Icon iconClass='fa-play-circle' iconStyle={{ fontSize: '48px' }} />
-					<Icon
-						iconClass={isChecked ? 'fa-check' : 'fa-plus'}
-						iconStyle={{
-							border: '2px solid white',
-							borderRadius: '100%',
-							width: '37px',
-							height: '37px',
-							display: 'grid',
-							placeItems: 'center',
-						}}
-						handleClick={handleClick}
-					/>
+					<Icon iconClass='fa-play-circle' iconStyle={{ fontSize: '48px' }} handleClick={handleClick} />
+					<Check />
 				</div>
 				<div className='description-hover'>
 					<div>{ageRating}</div>
-					<p>{type === 'movie' ? duration : `${seasons} Season ${episodes} Episode `}</p>
+					<p>{type === 'movie' ? duration : `${seasons} Season ${episodes} Episode`}</p>
 				</div>
 				<div className='genre-item'>
 					<p>{genre[0].split('&')[0]}</p>
@@ -77,6 +72,7 @@ function CardHover(props) {
 }
 
 CardHover.propTypes = {
+	id: PropTypes.number,
 	classHover: PropTypes.string,
 	isDisplayedElement: PropTypes.bool,
 	backdrop: PropTypes.string,

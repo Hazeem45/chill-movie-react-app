@@ -15,6 +15,8 @@ function MainTemplate() {
 	const newReleaseCollection = collection.filter(item => item.isNewRelease);
 	const otherCollection = collection.filter(item => !item.isPremium && !item.isTodayTrend && !item.isTrending && !item.isNewRelease);
 
+	if (collection.length < 10) return;
+
 	return (
 		<>
 			<NavBar />
