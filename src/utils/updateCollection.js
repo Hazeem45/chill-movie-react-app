@@ -195,11 +195,11 @@ export const getDirectorOrCreator = (data, type, result) => {
 		if (creators.length > 0) {
 			return (result.creator = creators.join(', '));
 		} else {
-			const writter = data.credits.crew.filter(person => person.department === 'Writing').map(creator => creator.name);
-			if (writter) {
-				return (result.writter = writter.join(', '));
+			const writer = data.credits.crew.filter(person => person.department === 'Writing').map(creator => creator.name);
+			if (writer) {
+				return (result.writer = writer.join(', '));
 			} else {
-				return (result.writter = 'N/A');
+				return (result.writer = 'N/A');
 			}
 		}
 	}

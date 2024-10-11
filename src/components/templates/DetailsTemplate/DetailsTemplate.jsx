@@ -8,8 +8,10 @@ import { useLocation } from 'react-router-dom';
 import SeasonCard from '../../modules/SeasonCard/SeasonCard';
 import BackToTopButton from '../../fragments/BackToTopButton/BackToTopButton';
 import './DetailsTemplate.css';
+import Carousel from '../../modules/Carousel/Carousel';
+import Button from '../../elements/Button';
 
-function DetailsTemplate({ contentData, seasonsData }) {
+function DetailsTemplate({ contentData, recommendationList, seasonsData }) {
 	const [activeSeason, setActiveSeason] = useState(null);
 	const location = useLocation();
 	const seasonRefs = useRef([]);
@@ -30,7 +32,12 @@ function DetailsTemplate({ contentData, seasonsData }) {
 		}
 	}, [location.hash, seasonsData]);
 
-	if (contentData.length < 1) return;
+	const scrollToSection = sectionId => {
+		const section = document.getElementById(sectionId);
+		section.scrollIntoView({ behavior: 'smooth' });
+	};
+
+	if (contentData.length < 1) return <h1>Loading...</h1>;
 
 	return (
 		<>
@@ -38,10 +45,15 @@ function DetailsTemplate({ contentData, seasonsData }) {
 			<div className='movie-series'>
 				<HeroSection heroContent={contentData} />
 				<AboutSection details={contentData} />
+				{contentData[0].type === 'tv' && (
+					<Button classBtn='recommend-nav-btn' handleClick={() => scrollToSection('Recommendations')}>
+						See Recommendations
+					</Button>
+				)}
 				{seasonsData.map((season, index) => (
 					<SeasonCard key={index} season={season} index={index} seasonRefs={seasonRefs} setActiveSeason={setActiveSeason} />
 				))}
-				{seasonsData.length > 0 && (
+				{seasonsData.length > 1 && (
 					<div className='menu-season'>
 						<span>Seasons :</span>
 						{seasonsData.map((season, index) => (
@@ -56,6 +68,7 @@ function DetailsTemplate({ contentData, seasonsData }) {
 						))}
 					</div>
 				)}
+				<Carousel title={'Recommendations'} films={recommendationList} />
 			</div>
 			<BackToTopButton />
 			<Footer />
@@ -65,6 +78,7 @@ function DetailsTemplate({ contentData, seasonsData }) {
 
 DetailsTemplate.propTypes = {
 	contentData: PropTypes.array,
+	recommendationList: PropTypes.array,
 	seasonsData: PropTypes.array,
 };
 

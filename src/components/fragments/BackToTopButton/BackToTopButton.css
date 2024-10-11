@@ -3,13 +3,22 @@
 	position: fixed;
 	bottom: 20px;
 	right: 20px;
-	background-color: #0f1e93;
+	background-color: #0367db;
 	color: #fff;
 	padding: 7px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
 	z-index: 10;
+	transition: 0.3s;
+}
+
+.back-to-top-btn:hover {
+	background-color: #024db7;
+}
+
+.back-to-top-btn:active {
+	transform: scale(0.95);
 }
 
 @media only screen and (max-width: 1200px) {

@@ -6,7 +6,7 @@ import Icon from '../../elements/Icon';
 import './Card.css';
 import LabelPremium from '../../elements/LabelFilm/LabelPremium';
 import { useEffect, useState } from 'react';
-import CardHover from '../../fragments/CardHover/CardHover';
+import CardHover from '../CardHover/CardHover';
 import { useNavigate } from 'react-router-dom';
 
 function Card(props) {

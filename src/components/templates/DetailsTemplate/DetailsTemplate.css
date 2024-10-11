@@ -1,13 +1,44 @@
 .movie-series {
 	margin: 0 auto;
 	max-width: 1000px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.movie-series button.recommend-nav-btn {
+	font-size: 1.2em;
+	font-weight: 700;
+	border: none;
+	color: white;
+	border-radius: 9px;
+	background-color: #0367db;
+	padding: 0.5em 1.7em;
+	margin: 25px 0 10px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.movie-series button.recommend-nav-btn:hover {
+	background-color: #024db7;
+}
+
+.movie-series button.recommend-nav-btn:active {
+	transform: scale(0.95);
+}
+
+.movie-series .carousel-container {
+	margin-top: 50px;
+}
+
+.movie-series section:last-child {
+	padding: 0;
 }
 
 .menu-season {
 	font-size: 1.2em;
 	font-weight: 700;
 	gap: 20px;
-	margin-top: 20px;
 	padding: 5px;
 	background-color: #424242;
 	border-radius: 5px;
@@ -18,9 +49,9 @@
 	gap: 15px;
 	align-items: center;
 	max-width: 1000px;
-	margin: 0 auto;
-	margin-top: 5em;
+	margin-top: 20px;
 	z-index: 1;
+	width: 100%;
 }
 
 .menu-season span {
@@ -43,7 +74,17 @@
 	color: grey;
 }
 
+@media only screen and (max-width: 1064px) {
+	.movie-series section:last-child {
+		padding: 0 25px;
+	}
+}
+
 @media only screen and (max-width: 576px) {
+	.movie-series {
+		margin: 0 auto;
+		max-width: 1000px;
+	}
 	.menu-season a:hover {
 		color: unset;
 	}
