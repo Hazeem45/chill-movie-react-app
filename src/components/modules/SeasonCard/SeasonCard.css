@@ -1,9 +1,9 @@
 h2.title-season {
 	position: sticky;
-	top: 10%;
+	top: 9%;
 	background-color: #181a1c;
 	border-radius: 5px;
-	z-index: 1;
+	z-index: 0;
 	padding: 5px 7px;
 	margin-bottom: -3em;
 	max-width: fit-content;
@@ -11,6 +11,7 @@ h2.title-season {
 
 .season-container {
 	padding-top: 5em;
+	z-index: -1;
 }
 
 .season-header:hover {
@@ -92,6 +93,12 @@ h2.title-season {
 	font-size: 0.9em;
 }
 
+@media only screen and (max-width: 1200px) {
+	.season-container {
+		padding: 5em 1.15em 0;
+	}
+}
+
 @media only screen and (max-width: 992px) {
 	.episode-image {
 		min-width: 150px;
@@ -109,6 +116,10 @@ h2.title-season {
 }
 
 @media only screen and (max-width: 576px) {
+	h2.title-season {
+		top: 7%;
+	}
+
 	.episode-image {
 		min-width: 100px;
 		max-width: 100px;

@@ -2,12 +2,13 @@ section {
 	width: 100%;
 	padding: 0 6%;
 	box-sizing: border-box;
+	background-color: #181a1c;
+	z-index: 1;
 }
 
 section .carousel-container {
 	position: relative;
 	margin-bottom: 25px;
-	z-index: 1;
 }
 
 section:nth-child(3) .carousel-container {

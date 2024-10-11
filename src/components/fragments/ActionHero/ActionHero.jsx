@@ -17,7 +17,7 @@ function ActionHero({ isVolumeOn, ageRating, handleClickVolume, handleClickStart
 			<Button handleClick={handleClickStart}>start</Button>
 			{location.pathname === '/home' ? (
 				<>
-					<Button>
+					<Button handleClick={handleClickStart}>
 						<Image source={InfoIcon} alt={'info-icon'} />
 						<span>see more</span>
 					</Button>
@@ -26,7 +26,7 @@ function ActionHero({ isVolumeOn, ageRating, handleClickVolume, handleClickStart
 			) : (
 				<Check />
 			)}
-			<span id='volume-icon' className='volume-icon' onClick={handleClickVolume}>
+			<span className='volume-icon' onClick={handleClickVolume}>
 				{isVolumeOn ? <Image source={VolumeOnIcon} alt={'volume'} /> : <Image source={VolumeOffIcon} alt={'volume'} />}
 			</span>
 		</div>

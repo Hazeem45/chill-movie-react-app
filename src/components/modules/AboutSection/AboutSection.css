@@ -79,8 +79,10 @@ section.about-section {
 	.about-section .label {
 		width: 120px;
 	}
+}
 
-	/* .movie-series .value {
-		width: 90%;
-	} */
+@media (max-width: 414px) {
+	section.about-section {
+		padding: 0 3%;
+	}
 }

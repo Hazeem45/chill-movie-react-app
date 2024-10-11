@@ -1,12 +1,12 @@
 import YouTube from 'react-youtube';
 import ActionHero from '../../fragments/ActionHero/ActionHero';
-import './HeroSection.css';
 import { useEffect, useRef, useState } from 'react';
 import Button from '../../elements/Button';
 import Icon from '../../elements/Icon';
 import PropTypes from 'prop-types';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Image from '../../elements/Image';
+import './HeroSection.css';
 
 function HeroSection({ heroContent }) {
 	const [currentVideoIndex, setCurrentVideoIndex] = useState(0);

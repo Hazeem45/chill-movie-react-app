@@ -3,10 +3,10 @@ import LabelTrending from '../../elements/LabelFilm/LabelTrending';
 import LabelNewEpisode from '../../elements/LabelFilm/LabelNewEpisode';
 import Icon from '../../elements/Icon';
 import Image from '../../elements/Image';
-import './CardHover.css';
 import PropTypes from 'prop-types';
-import Check from '../Check/Check';
+import Check from '../../fragments/Check/Check';
 import { useNavigate } from 'react-router-dom';
+import './CardHover.css';
 
 function CardHover(props) {
 	const {
@@ -29,6 +29,10 @@ function CardHover(props) {
 	const navigate = useNavigate();
 
 	const handleClick = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'instant',
+		});
 		navigate(`/${type}/${id}`);
 	};
 
@@ -52,17 +56,21 @@ function CardHover(props) {
 					<Check />
 				</div>
 				<div className='description-hover'>
-					<div>{ageRating}</div>
+					<div>{ageRating ? ageRating : 'N/A'}</div>
 					<p>{type === 'movie' ? duration : `${seasons} Season ${episodes} Episode`}</p>
 				</div>
 				<div className='genre-item'>
-					<p>{genre[0].split('&')[0]}</p>
-					<div>&#8226;</div>
-					<p>{genre[1].split('&')[0]}</p>
+					<p>{genre[0].includes('&') ? genre[0].split('&')[0] : genre[0]}</p>
+					{genre.length > 1 && (
+						<>
+							<div>&#8226;</div>
+							<p>{genre[1].includes('&') ? genre[1].split('&')[0] : genre[1]}</p>
+						</>
+					)}
 					{genre.length > 2 && (
 						<>
 							<div>&#8226;</div>
-							<p>{genre[2].split('&')[0]}</p>
+							<p>{genre[2].includes('&') ? genre[2].split('&')[0] : genre[2]}</p>
 						</>
 					)}
 				</div>

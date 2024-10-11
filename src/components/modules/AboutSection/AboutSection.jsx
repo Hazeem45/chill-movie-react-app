@@ -18,8 +18,8 @@ function AboutSection({ details }) {
 			credits.title = 'Creator';
 			credits.content = details[0].creator;
 		} else {
-			credits.title = 'Writter';
-			credits.content = details[0].writter;
+			credits.title = 'Writer';
+			credits.content = details[0].writer;
 		}
 	}
 
@@ -38,7 +38,7 @@ function AboutSection({ details }) {
 					</span>
 					<span>
 						<Icon iconClass={'fa-star'} iconStyle={{ fontSize: '16px', marginRight: '4px' }} />
-						{details[0].rating}
+						{details[0].rating ? details[0].rating : 'N/A'}
 					</span>
 				</div>
 				<div className='overview'>{details[0].overview}</div>
@@ -47,12 +47,12 @@ function AboutSection({ details }) {
 				<div className='info-item'>
 					<span className='label'>Cast</span>
 					<span>:</span>
-					<span className='value'>{details[0].cast}</span>
+					<span className='value'>{details[0].cast ? details[0].cast : 'N/A'}</span>
 				</div>
 				<div className='info-item'>
 					<span className='label'>Genre</span>
 					<span>:</span>
-					<span className='value'>{details[0].genre.join(', ')}</span>
+					<span className='value'>{details[0].genre ? details[0].genre.join(', ') : 'N/A'}</span>
 				</div>
 				<div className='info-item'>
 					<span className='label'>{credits.title}</span>

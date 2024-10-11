@@ -27,10 +27,12 @@ function Carousel({ title, films, isContinueWatch }) {
 		carouselRef.current.scrollLeft += event.deltaY;
 	};
 
+	if (films.length < 5) return <h1>Loading...</h1>;
+
 	return (
 		<section>
 			<div className='carousel-container'>
-				<h2>{title}</h2>
+				<h2 id={title}>{title}</h2>
 				<Button classBtn={`prev ${!isContinueWatch && 'scroll-poster'}`} handleClick={scrollPrev}>
 					<Image source={ArrowIcon} alt={'PrevIcon'} />
 				</Button>
