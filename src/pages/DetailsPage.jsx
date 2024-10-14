@@ -92,6 +92,7 @@ function MovieSeriesPage() {
 				setRecommendationsList(recommendsList);
 			} catch (error) {
 				console.error(`Error fetching ${type}:`, error);
+				alert(`Error fetching ${type} data`);
 				return null;
 			}
 		};
