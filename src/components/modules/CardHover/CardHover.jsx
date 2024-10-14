@@ -5,12 +5,10 @@ import Icon from '../../elements/Icon';
 import Image from '../../elements/Image';
 import PropTypes from 'prop-types';
 import Check from '../../fragments/Check/Check';
-import { useNavigate } from 'react-router-dom';
 import './CardHover.css';
 
 function CardHover(props) {
 	const {
-		id,
 		classHover,
 		isDisplayedElement,
 		backdrop,
@@ -25,16 +23,8 @@ function CardHover(props) {
 		episodes,
 		genre,
 		rating,
+		handleClick,
 	} = props;
-	const navigate = useNavigate();
-
-	const handleClick = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'instant',
-		});
-		navigate(`/${type}/${id}`);
-	};
 
 	return (
 		<div className={`carousel-item-hover ${classHover}`} style={{ display: !isDisplayedElement && 'none' }}>

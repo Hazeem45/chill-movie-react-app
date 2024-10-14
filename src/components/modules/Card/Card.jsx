@@ -72,12 +72,20 @@ function Card(props) {
 		setIsHovered(false);
 	};
 
+	const handleClick = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'instant',
+		});
+		navigate(`/${type}/${id}`);
+	};
+
 	return (
 		<div
 			className={isContinueWatch ? 'carousel-item' : 'carousel-poster-item'}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
-			onClick={() => isMobile && navigate(`/${type}/${id}`)}
+			onClick={() => isMobile && handleClick()}
 		>
 			<Image source={isContinueWatch ? backdrop : poster} alt={title} />
 			{isPremium && <LabelPremium />}
@@ -110,6 +118,7 @@ function Card(props) {
 					episodes={episodes}
 					genre={genre}
 					rating={rating}
+					handleClick={handleClick}
 				/>
 			)}
 		</div>
