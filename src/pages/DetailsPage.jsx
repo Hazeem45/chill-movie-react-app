@@ -17,7 +17,6 @@ function MovieSeriesPage() {
 			const apiEndpoint = 'https://api.themoviedb.org/3';
 
 			try {
-				// get movie/series details
 				const detailsEndpoint = `${apiEndpoint}/${type}/${id}`;
 				const response = await axios.get(detailsEndpoint, {
 					params: {
@@ -52,7 +51,6 @@ function MovieSeriesPage() {
 				const updatedResult = updatedCollection(result);
 				setData([updatedResult]);
 
-				// get season and episode
 				const numberOfSeasons = responseData.number_of_seasons;
 				const fetchedSeasons = [];
 
@@ -67,7 +65,6 @@ function MovieSeriesPage() {
 				}
 				setSeasonsData(fetchedSeasons);
 
-				// get recommendation of other movie/series
 				const recommendsList = [];
 
 				for (let i = 0; i < 10; i++) {
@@ -99,6 +96,12 @@ function MovieSeriesPage() {
 
 		fetchData();
 	}, [apiKey, id, type]);
+
+	useEffect(() => {
+		if (data.length > 0) {
+			document.title = `Chill | ${data[0].title}`;
+		}
+	}, [data]);
 
 	return <DetailsTemplate contentData={data} recommendationList={recommendationsList} seasonsData={seasonsData} />;
 }

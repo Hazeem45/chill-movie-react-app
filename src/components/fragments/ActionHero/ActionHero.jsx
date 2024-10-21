@@ -13,7 +13,7 @@ function ActionHero({ isVolumeOn, ageRating, handleClickVolume, handleClickStart
 	const location = useLocation();
 
 	return (
-		<div className='action-hero'>
+		<div className='action-hero' style={{ marginTop: location.pathname !== '/home' && '10px' }}>
 			<Button handleClick={handleClickStart}>start</Button>
 			{location.pathname === '/home' ? (
 				<>

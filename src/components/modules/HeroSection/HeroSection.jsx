@@ -135,13 +135,11 @@ function HeroSection({ heroContent }) {
 					)}
 				</div>
 				<div className='hero-text'>
+					<h1>{heroContent.length > 0 ? heroContent[currentVideoIndex].title : 'Loading...'}</h1>
 					{location.pathname === '/home' && (
-						<>
-							<h1>{heroContent.length > 0 ? heroContent[currentVideoIndex].title : 'Loading...'}</h1>
-							<p className={isOverviewClicked ? 'active' : undefined} onClick={() => setIsOverviewClicked(prevState => !prevState)}>
-								{heroContent.length > 0 ? heroContent[currentVideoIndex].overview : 'Plase Wait a Second...'}
-							</p>
-						</>
+						<p className={isOverviewClicked ? 'active' : undefined} onClick={() => setIsOverviewClicked(prevState => !prevState)}>
+							{heroContent.length > 0 ? heroContent[currentVideoIndex].overview : 'Plase Wait a Second...'}
+						</p>
 					)}
 					<ActionHero
 						handleClickVolume={handleClickVolume}
