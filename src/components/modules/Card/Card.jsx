@@ -37,7 +37,7 @@ function Card(props) {
 	const navigate = useNavigate();
 
 	const handleResize = () => {
-		const mediaQuery = window.matchMedia('(max-width: 576px)');
+		const mediaQuery = window.matchMedia('(max-width: 675px)');
 		setIsMobile(mediaQuery.matches);
 	};
 

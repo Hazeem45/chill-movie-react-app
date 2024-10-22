@@ -9,11 +9,11 @@ import { useLocation } from 'react-router-dom';
 import AgeRating from '../../elements/AgeRating/AgeRating';
 import Check from '../Check/Check';
 
-function ActionHero({ isVolumeOn, ageRating, handleClickVolume, handleClickStart }) {
+function ActionHero({ id, type, isVolumeOn, ageRating, handleClickVolume, handleClickStart }) {
 	const location = useLocation();
 
 	return (
-		<div className='action-hero'>
+		<div className='action-hero' style={{ marginTop: location.pathname !== '/home' && '10px' }}>
 			<Button handleClick={handleClickStart}>start</Button>
 			{location.pathname === '/home' ? (
 				<>
@@ -24,7 +24,7 @@ function ActionHero({ isVolumeOn, ageRating, handleClickVolume, handleClickStart
 					<AgeRating ageRating={ageRating} />
 				</>
 			) : (
-				<Check />
+				<Check id={id} type={type} />
 			)}
 			<span className='volume-icon' onClick={handleClickVolume}>
 				{isVolumeOn ? <Image source={VolumeOnIcon} alt={'volume'} /> : <Image source={VolumeOffIcon} alt={'volume'} />}
@@ -34,6 +34,8 @@ function ActionHero({ isVolumeOn, ageRating, handleClickVolume, handleClickStart
 }
 
 ActionHero.propTypes = {
+	id: PropTypes.number,
+	type: PropTypes.string,
 	isVolumeOn: PropTypes.bool.isRequired,
 	ageRating: PropTypes.string,
 	handleClickVolume: PropTypes.func.isRequired,

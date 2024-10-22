@@ -5,15 +5,25 @@ import Homepage from './pages/Homepage';
 import './styles/Animation.css';
 import './styles/App.css';
 import DetailsPage from './pages/DetailsPage';
+import WatchList from './pages/WatchList';
+import CollectionProvider from './context/CollectionContext';
 
 function App() {
 	return (
 		<Routes>
 			<Route path='/login' element={<Login />} />
 			<Route path='/register' element={<Register />} />
-			<Route path='/home' element={<Homepage />} />
+			<Route
+				path='/home'
+				element={
+					<CollectionProvider>
+						<Homepage />
+					</CollectionProvider>
+				}
+			/>
 			<Route path='/' element={<Navigate to={'/home'} replace />} />
 			<Route path='/:type/:id' element={<DetailsPage />} />
+			<Route path='/my-list' element={<WatchList />} />
 		</Routes>
 	);
 }

@@ -1,7 +1,5 @@
-import NavBar from '../../modules/NavBar/NavBar';
 import HeroSection from '../../modules/HeroSection/HeroSection';
 import AboutSection from '../../modules/AboutSection/AboutSection';
-import Footer from '../../modules/Footer/Footer';
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -10,6 +8,7 @@ import BackToTopButton from '../../fragments/BackToTopButton/BackToTopButton';
 import './DetailsTemplate.css';
 import Carousel from '../../modules/Carousel/Carousel';
 import Button from '../../elements/Button';
+import MainTemplate from '../MainTemplate';
 
 function DetailsTemplate({ contentData, recommendationList, seasonsData }) {
 	const [activeSeason, setActiveSeason] = useState(null);
@@ -40,8 +39,7 @@ function DetailsTemplate({ contentData, recommendationList, seasonsData }) {
 	if (contentData.length < 1) return <h1>Loading...</h1>;
 
 	return (
-		<>
-			<NavBar />
+		<MainTemplate>
 			<div className='movie-series'>
 				<HeroSection heroContent={contentData} />
 				<AboutSection details={contentData} />
@@ -71,8 +69,7 @@ function DetailsTemplate({ contentData, recommendationList, seasonsData }) {
 				<Carousel title={'Recommendations'} films={recommendationList} />
 			</div>
 			<BackToTopButton />
-			<Footer />
-		</>
+		</MainTemplate>
 	);
 }
 

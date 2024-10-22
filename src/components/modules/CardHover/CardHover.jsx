@@ -9,6 +9,7 @@ import './CardHover.css';
 
 function CardHover(props) {
 	const {
+		id,
 		classHover,
 		isDisplayedElement,
 		backdrop,
@@ -43,7 +44,7 @@ function CardHover(props) {
 			<div className='action-hover'>
 				<div className='button-action'>
 					<Icon iconClass='fa-play-circle' iconStyle={{ fontSize: '48px' }} handleClick={handleClick} />
-					<Check />
+					<Check id={id} type={type} />
 				</div>
 				<div className='description-hover'>
 					<div>{ageRating ? ageRating : 'N/A'}</div>
