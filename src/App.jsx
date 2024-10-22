@@ -5,6 +5,7 @@ import Homepage from './pages/Homepage';
 import './styles/Animation.css';
 import './styles/App.css';
 import DetailsPage from './pages/DetailsPage';
+import WatchList from './pages/WatchList';
 import CollectionProvider from './context/CollectionContext';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 			/>
 			<Route path='/' element={<Navigate to={'/home'} replace />} />
 			<Route path='/:type/:id' element={<DetailsPage />} />
+			<Route path='/my-list' element={<WatchList />} />
 		</Routes>
 	);
 }

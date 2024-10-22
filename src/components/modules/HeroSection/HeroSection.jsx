@@ -142,6 +142,8 @@ function HeroSection({ heroContent }) {
 						</p>
 					)}
 					<ActionHero
+						id={heroContent[currentVideoIndex].id}
+						type={heroContent[currentVideoIndex].type}
 						handleClickVolume={handleClickVolume}
 						handleClickStart={handleClickStart}
 						isVolumeOn={isVolumeOn}

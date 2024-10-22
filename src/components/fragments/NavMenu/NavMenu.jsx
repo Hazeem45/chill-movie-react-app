@@ -5,6 +5,13 @@ import Icon from '../../../assets/svg/icon.svg';
 import './NavMenu.css';
 
 function NavMenu() {
+	const handleClick = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'instant',
+		});
+	};
+
 	return (
 		<div className='nav-menu'>
 			<Link to={'/'}>
@@ -13,7 +20,9 @@ function NavMenu() {
 			</Link>
 			<Link>series</Link>
 			<Link>movies</Link>
-			<Link>my list</Link>
+			<Link to={'/my-list'} onClick={handleClick}>
+				my list
+			</Link>
 		</div>
 	);
 }
