@@ -7,7 +7,7 @@ import WatchContents from '../components/modules/WatchContents/WatchContents';
 function WatchList() {
 	const [watchList, setWatchList] = useState([]);
 	const storedItems = JSON.parse(localStorage.getItem('checkedItems'));
-	const baseImageUrl = 'https://image.tmdb.org/t/p/original';
+	const baseImageUrl = import.meta.env.VITE_BASE_IMG_URL;
 	const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
 	useEffect(() => {
@@ -15,7 +15,7 @@ function WatchList() {
 			try {
 				const resultList = await Promise.all(
 					storedItems.map(async item => {
-						const response = await axios.get(`https://api.themoviedb.org/3/${item.type}/${item.id}`, {
+						const response = await axios.get(`${import.meta.env.VITE_TMDB_API_ENDPOINT}/${item.type}/${item.id}`, {
 							params: {
 								api_key: apiKey,
 							},
@@ -23,8 +23,8 @@ function WatchList() {
 
 						const result = {
 							id: response.data.id,
-							poster: `${baseImageUrl}${response.data.poster_path}`,
-							backdrop: `${baseImageUrl}${response.data.backdrop_path}`,
+							poster: `${baseImageUrl}/original${response.data.poster_path}`,
+							backdrop: `${baseImageUrl}/original${response.data.backdrop_path}`,
 							title: item.type === 'movie' ? response.data.title : response.data.name,
 							rating: `${response.data.vote_average.toFixed(1)}/10`,
 							genre: response.data.genres.map(genre => genre.name),
@@ -41,7 +41,7 @@ function WatchList() {
 			}
 		};
 		fetchDataWatchList();
-	}, [apiKey, storedItems]);
+	}, [apiKey, baseImageUrl, storedItems]);
 
 	return (
 		<MainTemplate>

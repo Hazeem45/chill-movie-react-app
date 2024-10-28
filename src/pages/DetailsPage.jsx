@@ -13,8 +13,8 @@ function MovieSeriesPage() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const baseImageUrl = 'https://image.tmdb.org/t/p/original';
-			const apiEndpoint = 'https://api.themoviedb.org/3';
+			const baseImageUrl = import.meta.env.VITE_BASE_IMG_URL;
+			const apiEndpoint = import.meta.env.VITE_TMDB_API_ENDPOINT;
 
 			try {
 				const detailsEndpoint = `${apiEndpoint}/${type}/${id}`;
@@ -27,7 +27,7 @@ function MovieSeriesPage() {
 
 				const responseData = response.data;
 				const recommendationsResult = responseData.recommendations.results;
-				const baseUrl = `https://www.themoviedb.org/${type}/${responseData.id}`;
+				const detailsInTMDB = `${import.meta.env.VITE_BASE_TMDB_URL}/${type}/${responseData.id}`;
 
 				const result = {
 					id: responseData.id,
@@ -43,7 +43,7 @@ function MovieSeriesPage() {
 						.slice(0, 3)
 						.map(actor => actor.name)
 						.join(', '),
-					fullCredit: baseUrl,
+					fullCredit: detailsInTMDB,
 					overview: responseData.overview,
 				};
 				getDirectorOrCreator(responseData, type, result);
@@ -75,8 +75,8 @@ function MovieSeriesPage() {
 					});
 					const recommendation = {
 						id: response.data.id,
-						poster: `${baseImageUrl}${response.data.poster_path}`,
-						backdrop: `${baseImageUrl}${response.data.backdrop_path}`,
+						poster: `${baseImageUrl}/original${response.data.poster_path}`,
+						backdrop: `${baseImageUrl}/original${response.data.backdrop_path}`,
 						title: type === 'movie' ? response.data.title : response.data.name,
 						rating: `${response.data.vote_average.toFixed(1)}/10`,
 						genre: response.data.genres.map(genre => genre.name),
