@@ -12,7 +12,7 @@ function DropdownProfile() {
 		<div className='dropdown'>
 			<ul>
 				<li>
-					<Link>
+					<Link to={'/profile'}>
 						<Icon iconClass='fa-user' iconStyle={{ fontSize: iconStyle.fontSize, marginRight: iconStyle.margin }} />
 						<p>my profile</p>
 					</Link>

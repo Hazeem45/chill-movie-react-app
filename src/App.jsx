@@ -7,6 +7,7 @@ import './styles/App.css';
 import DetailsPage from './pages/DetailsPage';
 import WatchList from './pages/WatchList';
 import CollectionProvider from './context/CollectionContext';
+import Profile from './pages/Profile';
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
 					</CollectionProvider>
 				}
 			/>
+			<Route path='/profile' element={<Profile />} />
 			<Route path='/' element={<Navigate to={'/home'} replace />} />
 			<Route path='/:type/:id' element={<DetailsPage />} />
 			<Route path='/my-list' element={<WatchList />} />

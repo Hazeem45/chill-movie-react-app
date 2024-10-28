@@ -128,11 +128,12 @@ export const updatedCollection = (itemDetails) => {
 	}
 };
 
+// set the video manually bcs in tmdb it isn't available or i just want to customize the video
 export const setVideo = (title, data) => {
 	if (title === 'The K2') {
 		return 'zL2aiveekEM';
 	} else if (title === 'Cars') {
-		return 'v3xSv-E1QsU';
+		return '1d9MXedBX3k';
 	} else if (title === 'Top Gun: Maverick') {
 		return 'qSqVVswa420';
 	} else if (title === 'Naruto Shippūden') {

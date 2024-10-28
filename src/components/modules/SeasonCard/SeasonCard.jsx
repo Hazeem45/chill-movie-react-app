@@ -7,6 +7,7 @@ import './SeasonCard.css';
 function SeasonCard({ season, index, seasonRefs, setActiveSeason }) {
 	const seasonNumber = `Season ${season.season_number}`;
 	const seasonTitle = season.name;
+	const baseImageUrl = import.meta.env.VITE_BASE_IMG_URL;
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -44,7 +45,7 @@ function SeasonCard({ season, index, seasonRefs, setActiveSeason }) {
 						ref={el => (seasonRefs.current[index] = el)}
 					>
 						<div className='season-header'>
-							<Image source={`https://image.tmdb.org/t/p/w200${season.poster_path}`} alt={season.name} />
+							<Image source={`${baseImageUrl}/w200${season.poster_path}`} alt={season.name} />
 							<div className='season-info'>
 								<h2>{seasonNumber === seasonTitle ? seasonNumber : `Season ${season.season_number} : ${season.name}`}</h2>
 								<p className='air-date'>{season.air_date}</p>
@@ -55,7 +56,7 @@ function SeasonCard({ season, index, seasonRefs, setActiveSeason }) {
 							{season.episodes.map((episode, index) => (
 								<div key={index} className='episode-container'>
 									<div className='episode-number'>{episode.episode_number}</div>
-									<Image className='episode-image' source={`https://image.tmdb.org/t/p/w200${episode.still_path}`} alt={episode.name} />
+									<Image className='episode-image' source={`${baseImageUrl}/w200${episode.still_path}`} alt={episode.name} />
 									<div className='episode-details'>
 										<div className='episode-title-wrap'>
 											<h3 className='episode-title'>{episode.name}</h3>

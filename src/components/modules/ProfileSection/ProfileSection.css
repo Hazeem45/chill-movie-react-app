@@ -1,0 +1,82 @@
+section.profile-section h2 {
+	font-size: 1.777775em;
+	font-weight: 700;
+	margin-top: 20px;
+}
+
+.profile-container {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	width: 100%;
+	margin: 32px 0 50px;
+	gap: 80px;
+}
+
+.profile-form {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	gap: 32px;
+}
+
+.profile-form button {
+	font-size: 1em;
+	font-weight: 700;
+	text-transform: capitalize;
+	border-radius: 30px;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.profile-form button:last-child {
+	border: none;
+	color: white;
+	border-radius: 30px;
+	background-color: #0f1e93;
+	padding: 0.725em 1.725em;
+	align-self: flex-start;
+}
+
+.profile-form button:active {
+	transform: scale(0.95);
+}
+
+@media only screen and (max-width: 1200px) {
+	.subscription-notice {
+		width: 50%;
+		padding: 1.3em;
+		gap: 15px;
+	}
+}
+
+@media only screen and (max-width: 992px) {
+	.notice-title h3:first-child {
+		display: none;
+	}
+
+	.notice-title h3:last-child {
+		display: block;
+	}
+}
+
+@media (max-width: 768px) {
+	.profile-container {
+		flex-direction: column;
+	}
+
+	.profile-form {
+		width: 100%;
+	}
+
+	.subscription-notice {
+		align-self: center;
+		width: 90%;
+	}
+}
+
+@media only screen and (max-width: 576px) {
+	section.profile-section {
+		padding: 0 4%;
+	}
+}

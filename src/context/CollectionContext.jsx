@@ -1,16 +1,15 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { collectionTitles, getDirectorOrCreator, getDurationOrEpisode, setVideo, updatedCollection } from '../utils/updateCollection';
+import { collectionTitles, getDurationOrEpisode, setVideo, updatedCollection } from '../utils/updateCollection';
 
 export const CollectionContext = createContext();
 
 function CollectionProvider({ children }) {
 	const [collection, setCollection] = useState([]);
 	const apiKey = import.meta.env.VITE_TMDB_API_KEY;
-	const baseImageUrl = 'https://image.tmdb.org/t/p/original';
-
-	// set the video manually bcs in tmdb it isn't available or i just want to customize the video
+	const baseImageUrl = import.meta.env.VITE_BASE_IMG_URL;
+	const apiEndpoint = import.meta.env.VITE_TMDB_API_ENDPOINT;
 
 	useEffect(() => {
 		const fetchCollection = async () => {
@@ -26,7 +25,7 @@ function CollectionProvider({ children }) {
 						type = 'tv';
 					}
 
-					const { data } = await axios.get(`https://api.themoviedb.org/3/search/${type}`, {
+					const { data } = await axios.get(`${apiEndpoint}/search/${type}`, {
 						params: {
 							api_key: apiKey,
 							query: query,
@@ -36,7 +35,7 @@ function CollectionProvider({ children }) {
 					if (data.results.length > 0) {
 						const itemData = data.results[0];
 
-						const detailsEndpoint = `https://api.themoviedb.org/3/${type}/${itemData.id}`;
+						const detailsEndpoint = `${apiEndpoint}/${type}/${itemData.id}`;
 
 						const itemDetails = await axios.get(detailsEndpoint, {
 							params: {
@@ -45,25 +44,17 @@ function CollectionProvider({ children }) {
 							},
 						});
 
-						const baseUrl = `https://www.themoviedb.org/${type}/${itemData.id}`;
-
 						const itemResult = {
 							id: itemData.id,
 							video: setVideo(type === 'movie' ? itemData.title : itemData.name, itemDetails.data),
-							poster: `${baseImageUrl}${itemData.poster_path}`,
-							backdrop: `${baseImageUrl}${itemData.backdrop_path}`,
+							poster: `${baseImageUrl}/original${itemData.poster_path}`,
+							backdrop: `${baseImageUrl}/original${itemData.backdrop_path}`,
 							title: type === 'movie' ? itemData.title : itemData.name,
+							overview: itemData.overview,
 							rating: `${itemData.vote_average.toFixed(1)}/10`,
 							genre: itemDetails.data.genres.map(genre => genre.name),
-							cast: itemDetails.data.credits.cast
-								.slice(0, 3)
-								.map(actor => actor.name)
-								.join(', '),
-							fullCredit: baseUrl,
-							overview: itemData.overview,
 							type: type,
 						};
-						getDirectorOrCreator(itemDetails.data, type, itemResult);
 						getDurationOrEpisode(itemDetails.data, type, itemResult);
 						const updatedItemResult = updatedCollection(itemResult);
 						return updatedItemResult;
@@ -79,7 +70,7 @@ function CollectionProvider({ children }) {
 		};
 
 		fetchCollection();
-	}, [apiKey]);
+	}, [apiEndpoint, apiKey, baseImageUrl]);
 
 	return <CollectionContext.Provider value={{ collection }}>{children}</CollectionContext.Provider>;
 }

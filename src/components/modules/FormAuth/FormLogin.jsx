@@ -12,13 +12,11 @@ function FormLogin() {
 	});
 	const inputs = [
 		{
-			id: 1,
 			name: 'username',
 			inputType: 'text',
 			placeholder: 'Enter Username',
 		},
 		{
-			id: 2,
 			name: 'password',
 			inputType: undefined,
 			placeholder: 'Enter Password',
@@ -36,8 +34,8 @@ function FormLogin() {
 			}}
 		>
 			<div className='form-box'>
-				{inputs.map(data => (
-					<InputForm key={data.id} {...data} handleChange={handleChangeInputForm} />
+				{inputs.map((data, index) => (
+					<InputForm key={index} {...data} handleChange={handleChangeInputForm} />
 				))}
 			</div>
 			<div className='option-auth'>

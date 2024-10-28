@@ -1,0 +1,49 @@
+.subscription-notice {
+	display: flex;
+	max-width: 520px;
+	height: max-content;
+	border-radius: 12px;
+	padding: 1.5em;
+	background-color: #3d4142;
+	gap: 17px;
+}
+
+.subscription-notice img {
+	margin-top: 10px;
+	height: 78px;
+}
+
+.notice-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 17px;
+}
+
+.notice-title h3:last-child {
+	display: none;
+}
+
+.notice-wrapper h3 {
+	font-size: 1.4em;
+}
+
+.notice-wrapper p {
+	font-size: 1.05em;
+}
+
+.subscription-notice button {
+	all: unset;
+	font-size: 1em;
+	font-weight: 700;
+	border-radius: 48px;
+	text-transform: capitalize;
+	cursor: pointer;
+	transition: 0.2s;
+	padding: 0.325em 1.375em;
+	background-color: #2f3334;
+	align-self: flex-end;
+}
+
+.subscription-notice button:active {
+	transform: scale(0.9);
+}

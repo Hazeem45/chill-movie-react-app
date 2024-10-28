@@ -32,8 +32,12 @@ function DetailsTemplate({ contentData, recommendationList, seasonsData }) {
 	}, [location.hash, seasonsData]);
 
 	const scrollToSection = sectionId => {
-		const section = document.getElementById(sectionId);
-		section.scrollIntoView({ behavior: 'smooth' });
+		if (recommendationList) {
+			const section = document.getElementById(sectionId);
+			section.scrollIntoView({ behavior: 'smooth' });
+		} else {
+			alert('please wait');
+		}
 	};
 
 	if (contentData.length < 1) return <h1>Loading...</h1>;

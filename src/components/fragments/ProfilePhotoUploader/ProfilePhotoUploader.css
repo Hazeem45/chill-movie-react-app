@@ -1,0 +1,35 @@
+.profile-photo-uploader {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+}
+
+.profile-photo-uploader img {
+	border-radius: 50%;
+}
+
+.profile-photo-uploader div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+}
+
+.profile-photo-uploader button {
+	border: 1px solid #3254ff;
+	color: #3254ff;
+	background-color: transparent;
+	padding: 0.7em 1.7em;
+}
+
+.profile-photo-uploader button:hover {
+	background-color: #3254ff;
+	color: white;
+}
+
+.profile-photo-uploader div span {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	color: #c1c2c4;
+}

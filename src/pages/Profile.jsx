@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import WatchContents from '../components/modules/WatchContents/WatchContents';
 import MainTemplate from '../components/templates/MainTemplate';
 import axios from 'axios';
 import { getDurationOrEpisode, updatedCollection } from '../utils/updateCollection';
-import WatchContents from '../components/modules/WatchContents/WatchContents';
+import ProfileSection from '../components/modules/ProfileSection/ProfileSection';
 
-function WatchList() {
+function Profile() {
 	const [watchList, setWatchList] = useState([]);
 	const storedItems = JSON.parse(localStorage.getItem('checkedItems'));
 	const baseImageUrl = import.meta.env.VITE_BASE_IMG_URL;
@@ -45,9 +46,10 @@ function WatchList() {
 
 	return (
 		<MainTemplate>
+			<ProfileSection />
 			<WatchContents title='My List' cardContents={watchList} />
 		</MainTemplate>
 	);
 }
 
-export default WatchList;
+export default Profile;

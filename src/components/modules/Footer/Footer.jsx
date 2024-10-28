@@ -6,6 +6,7 @@ import Image from '../../elements/Image';
 
 function Footer() {
 	const [isMobile, setIsMobile] = useState(false);
+	const baseUrl = import.meta.env.VITE_BASE_TMDB_URL;
 	const [accordionState, setAccordionState] = useState({
 		genre: false,
 		help: false,
@@ -74,10 +75,10 @@ function Footer() {
 					</div>
 				</div>
 			</footer>
-			<div className='credit-tmdb' onClick={() => window.open('https://www.themoviedb.org', '_blank')}>
+			<div className='credit-tmdb' onClick={() => window.open(baseUrl, '_blank')}>
 				<p>This webApp uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB.</p>
 				<Image
-					source='https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg'
+					source={`${baseUrl}/assets/2/v4/logos/v2/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg`}
 					alt={'imdb-assets'}
 				/>
 			</div>

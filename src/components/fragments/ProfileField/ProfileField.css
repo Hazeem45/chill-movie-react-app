@@ -1,0 +1,42 @@
+.profile-field {
+	position: relative;
+	/* gap: 1px; */
+	padding: 0.4444444444444444em 0.8888888888888888em;
+	max-width: 642px;
+	height: 54px;
+	background-color: #22282a;
+	border: 1px solid #e7e3fc3b;
+	/* margin: 10px 0; */
+	border-radius: 8px;
+}
+
+.profile-field label {
+	font-weight: 600px;
+	font-size: 1em;
+	letter-spacing: 0.2px;
+	color: #9d9ea1;
+	position: absolute;
+}
+
+.profile-field input {
+	all: unset;
+	padding-top: 10px;
+	width: 95%;
+	height: 80%;
+	font-size: 1.1em;
+}
+
+.profile-field .edit-field {
+	position: absolute;
+	right: 3px;
+	font-size: 24px;
+	cursor: pointer;
+	transition: 0.2s;
+	height: 54px;
+	line-height: 54px;
+	padding: 0 7px;
+}
+
+.profile-field .edit-field:active {
+	transform: scale(0.8);
+}
