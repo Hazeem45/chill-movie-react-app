@@ -14,12 +14,7 @@
 
 .nav-menu a {
 	cursor: pointer;
-	transition: 0.2s;
 	color: white;
-}
-
-.nav-menu a:hover {
-	color: rgba(255, 255, 255, 0.5);
 }
 
 .nav-menu img.logo-without-text {
