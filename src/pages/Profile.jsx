@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import WatchContents from '../components/modules/WatchContents/WatchContents';
-import MainTemplate from '../components/templates/MainTemplate';
 import axios from 'axios';
 import { getDurationOrEpisode, updatedCollection } from '../utils/updateCollection';
 import ProfileSection from '../components/modules/ProfileSection/ProfileSection';
@@ -45,10 +44,10 @@ function Profile() {
 	}, [apiKey, baseImageUrl, storedItems]);
 
 	return (
-		<MainTemplate>
+		<>
 			<ProfileSection />
 			<WatchContents title='My List' cardContents={watchList} />
-		</MainTemplate>
+		</>
 	);
 }
 

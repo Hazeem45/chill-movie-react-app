@@ -3,15 +3,19 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDirectorOrCreator, getDurationOrEpisode, setVideo, updatedCollection } from '../utils/updateCollection';
 import DetailsTemplate from '../components/templates/DetailsTemplate/DetailsTemplate';
+import ErrorPage from './ErrorPage';
 
-function MovieSeriesPage() {
+function DetailsPage() {
 	const { type, id } = useParams();
 	const [data, setData] = useState([]);
 	const [seasonsData, setSeasonsData] = useState([]);
 	const [recommendationsList, setRecommendationsList] = useState([]);
+	const [hasError, setHasError] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
 	const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
 	useEffect(() => {
+		setRecommendationsList([]);
 		const fetchData = async () => {
 			const baseImageUrl = import.meta.env.VITE_BASE_IMG_URL;
 			const apiEndpoint = import.meta.env.VITE_TMDB_API_ENDPOINT;
@@ -89,7 +93,8 @@ function MovieSeriesPage() {
 				setRecommendationsList(recommendsList);
 			} catch (error) {
 				console.error(`Error fetching ${type}:`, error);
-				alert(`Error fetching ${type} data`);
+				setErrorMessage(error.response.data.status_message);
+				setHasError(true);
 				return null;
 			}
 		};
@@ -103,7 +108,11 @@ function MovieSeriesPage() {
 		}
 	}, [data]);
 
+	if (hasError) {
+		return <ErrorPage message={errorMessage} />;
+	}
+
 	return <DetailsTemplate contentData={data} recommendationList={recommendationsList} seasonsData={seasonsData} />;
 }
 
-export default MovieSeriesPage;
+export default DetailsPage;

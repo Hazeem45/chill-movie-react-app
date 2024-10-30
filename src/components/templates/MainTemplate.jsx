@@ -1,19 +1,15 @@
-import PropTypes from 'prop-types';
 import Footer from '../modules/Footer/Footer';
 import NavBar from '../modules/NavBar/NavBar';
+import { Outlet } from 'react-router-dom';
 
-function MainTemplate({ children }) {
+function MainTemplate() {
 	return (
 		<>
 			<NavBar />
-			{children}
+			<Outlet />
 			<Footer />
 		</>
 	);
 }
-
-MainTemplate.propTypes = {
-	children: PropTypes.node.isRequired,
-};
 
 export default MainTemplate;
