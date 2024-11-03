@@ -11,7 +11,7 @@ function ProfileField({ label, value, type, handleChange }) {
 	return (
 		<div className='profile-field'>
 			<Label value={label} />
-			<Input value={type !== 'email' ? value : 'example@email.com'} type={type} handleChange={handleChange} readOnly={!activeInput} />
+			<Input value={value} id={label} type={type} handleChange={handleChange} readOnly={!activeInput} />
 			{type !== 'email' && (
 				<Icon iconClass='fa-pencil edit-field' iconStyle={{ color: activeInput && '#3254ff' }} handleClick={() => setActiveInput(!activeInput)} />
 			)}
