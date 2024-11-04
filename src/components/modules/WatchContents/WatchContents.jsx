@@ -18,7 +18,7 @@ function WatchContents({ title, cardContents }) {
 		<section className='watch-content'>
 			<div className='title-list'>
 				<h2>{title}</h2>
-				{locationPath === '/profile' && <Link to={'/my-list'}>See More</Link>}
+				{locationPath === '/profile' && <Link to={'/favorite'}>See More</Link>}
 			</div>
 			{cardContents.length > 0 ? (
 				<div className='card-grid'>

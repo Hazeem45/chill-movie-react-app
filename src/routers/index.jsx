@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
 						element: <Homepage />,
 					},
 					{
-						path: 'my-list',
+						path: 'favorite',
 						element: <WatchList />,
 					},
 					{
