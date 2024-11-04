@@ -1,23 +1,20 @@
-import PropTypes from 'prop-types';
 import AuthHeader from '../../fragments/TitleAuth/TitleAuth';
 import AuthThirdParty from '../../fragments/ThirdPartyAuth/ThirdPartyAuth';
 import './AuthTemplate.css';
+import { Outlet, useLocation } from 'react-router-dom';
 
-function AuthLayout({ title, children }) {
+function AuthTemplate() {
+	const locationPathname = useLocation().pathname;
+
 	return (
-		<div className={`container ${title === 'login' ? 'bg-login' : 'bg-register'}`}>
-			<div className={`form-container ${title === 'register' && 'form-register'}`}>
-				<AuthHeader title={title} />
-				{children}
+		<div className={`container ${locationPathname === '/login' ? 'bg-login' : 'bg-register'}`}>
+			<div className={`form-container ${locationPathname === '/register' && 'form-register'}`}>
+				<AuthHeader pathname={locationPathname} />
+				<Outlet />
 				<AuthThirdParty />
 			</div>
 		</div>
 	);
 }
 
-AuthLayout.propTypes = {
-	title: PropTypes.string.isRequired,
-	children: PropTypes.element.isRequired,
-};
-
-export default AuthLayout;
+export default AuthTemplate;

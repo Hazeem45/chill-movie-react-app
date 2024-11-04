@@ -1,5 +1,4 @@
 import { useEffect, useContext } from 'react';
-import MainTemplate from '../components/templates/MainTemplate';
 import { CollectionContext } from '../context/CollectionContext';
 import Carousel from '../components/modules/Carousel/Carousel';
 import HeroSection from '../components/modules/HeroSection/HeroSection';
@@ -30,12 +29,12 @@ function Homepage() {
 	];
 
 	return (
-		<MainTemplate>
+		<>
 			<HeroSection heroContent={premiumCollection} />
 			{carouselData.map((carousel, index) => (
 				<Carousel key={index} title={carousel.title} films={carousel.films} isContinueWatch={carousel.isContinueWatch || false} />
 			))}
-		</MainTemplate>
+		</>
 	);
 }
 

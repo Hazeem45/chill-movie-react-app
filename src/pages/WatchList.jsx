@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import MainTemplate from '../components/templates/MainTemplate';
 import axios from 'axios';
 import { getDurationOrEpisode, updatedCollection } from '../utils/updateCollection';
 import WatchContents from '../components/modules/WatchContents/WatchContents';
@@ -43,11 +42,7 @@ function WatchList() {
 		fetchDataWatchList();
 	}, [apiKey, baseImageUrl, storedItems]);
 
-	return (
-		<MainTemplate>
-			<WatchContents title='My List' cardContents={watchList} />
-		</MainTemplate>
-	);
+	return <WatchContents title='My List' cardContents={watchList} />;
 }
 
 export default WatchList;

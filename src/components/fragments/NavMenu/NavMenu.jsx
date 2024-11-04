@@ -18,8 +18,8 @@ function NavMenu() {
 				<Image source={Logo} className={'logo-text'} />
 				<Image source={Icon} className={'logo-without-text'} />
 			</Link>
-			<Link>series</Link>
-			<Link>movies</Link>
+			<Link onClick={() => alert('this feature is under development')}>series</Link>
+			<Link onClick={() => alert('this feature is under development')}>movies</Link>
 			<Link to={'/my-list'} onClick={handleClick}>
 				my list
 			</Link>

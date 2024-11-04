@@ -37,13 +37,16 @@
 	font-size: 1em;
 	height: 43px;
 	border-radius: 24px;
-	background-color: transparent;
 	border: 1px solid #e7e3fc3b;
 	padding: 0.7777777777777778em 1.1111111111111112em;
 	color: white;
 	box-sizing: border-box;
 	cursor: pointer;
 	gap: 10px;
+}
+
+.form-container button:nth-child(2) {
+	background-color: transparent;
 }
 
 .form-container button:hover {

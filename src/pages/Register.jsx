@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import AuthTemplate from '../components/templates/AuthTemplate/AuthTemplate';
 import FormRegister from '../components/modules/FormAuth/FormRegister';
 
 function Register() {
@@ -7,11 +6,7 @@ function Register() {
 		document.title = 'Sign-Up';
 	}, []);
 
-	return (
-		<AuthTemplate title='register'>
-			<FormRegister />
-		</AuthTemplate>
-	);
+	return <FormRegister />;
 }
 
 export default Register;
