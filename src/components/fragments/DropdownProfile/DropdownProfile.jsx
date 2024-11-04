@@ -1,10 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import Icon from '../../elements/Icon';
 import './DropdownProfile.css';
-import { isAuthenticated } from '../../../utils/authUtils';
+import { useSelector } from 'react-redux';
 
 function DropdownProfile() {
 	const navigate = useNavigate();
+	const isLogin = useSelector(state => state.user.isLogin);
 
 	const iconStyle = {
 		fontSize: '18px',
@@ -12,9 +13,11 @@ function DropdownProfile() {
 	};
 
 	const handleClick = () => {
-		if (isAuthenticated()) {
+		if (isLogin) {
 			localStorage.setItem('isLoggedIn', false);
+			localStorage.removeItem('userData');
 			navigate('/login');
+			location.reload();
 		} else {
 			navigate('/login');
 		}
@@ -23,7 +26,7 @@ function DropdownProfile() {
 	return (
 		<div className='dropdown'>
 			<ul>
-				{!isAuthenticated() && (
+				{isLogin && (
 					<>
 						<li>
 							<Link to={'/profile'}>
@@ -43,10 +46,10 @@ function DropdownProfile() {
 				<li>
 					<Link onClick={handleClick}>
 						<Icon
-							iconClass={!isAuthenticated() ? 'fa-sign-out' : 'fa-sign-in'}
+							iconClass={isLogin ? 'fa-sign-out' : 'fa-sign-in'}
 							iconStyle={{ fontSize: iconStyle.fontSize, marginTop: iconStyle.margin }}
 						/>
-						<p>{!isAuthenticated() ? 'logout' : 'login'}</p>
+						<p>{isLogin ? 'logout' : 'login'}</p>
 					</Link>
 				</li>
 			</ul>

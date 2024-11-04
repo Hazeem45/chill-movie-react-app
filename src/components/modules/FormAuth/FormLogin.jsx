@@ -3,15 +3,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import InputForm from '../../fragments/InputForm/InputForm';
 import { useState } from 'react';
 import axios from 'axios';
-import { Bounce, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import './FormAuth.css';
 import { useDispatch } from 'react-redux';
-import { addUserData } from '../../../redux/slices/userSlice';
+import { setIsLogin, setUserData } from '../../../redux/slices/userSlice';
+import { getDefaultToastConfig } from '../../../utils/toastStyleConfig';
 
 function FormLogin() {
 	const apiEndpoint = import.meta.env.VITE_MOCK_API_ENDPOINT;
+	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const toastStyle = getDefaultToastConfig();
 
 	const [values, setValues] = useState({
 		username: '',
@@ -31,43 +34,43 @@ function FormLogin() {
 		},
 	];
 
-	const toastStyle = {
-		position: 'top-right',
-		autoClose: 3000,
-		hideProgressBar: false,
-		closeOnClick: true,
-		pauseOnHover: true,
-		draggable: true,
-		progress: undefined,
-		theme: 'dark',
-		transition: Bounce,
-	};
-
 	const handleChangeInputForm = e => {
 		setValues({ ...values, [e.target.id]: e.target.value });
 	};
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		try {
-			const response = await axios.get(apiEndpoint, {
-				params: {
-					username: values.username,
-				},
-			});
+		if (!isLoading) {
+			setIsLoading(true);
+			try {
+				const response = await axios.get(apiEndpoint, {
+					params: {
+						username: values.username,
+					},
+					validateStatus: status => status === 200 || status === 404,
+				});
 
-			if (response.data.length > 0 && response.data[0].password === values.password) {
-				toast.success('Login successful!', toastStyle);
-				dispatch(addUserData(response.data[0]));
-				localStorage.setItem('userData', JSON.stringify(response.data[0]));
-				localStorage.setItem('isLoggedIn', true);
-				navigate('/');
-			} else {
-				toast.error('Invalid credentials.', toastStyle);
+				if (response.status == 200) {
+					if (response.data[0].username === values.username && response.data[0].password === values.password) {
+						localStorage.setItem('isLoggedIn', true);
+						localStorage.setItem('userData', JSON.stringify(response.data[0]));
+						dispatch(setIsLogin(true));
+						dispatch(setUserData(response.data[0]));
+						toast.success('Login successful!', toastStyle);
+						navigate('/');
+					} else {
+						throw new Error('Username or Password is Incorrect!');
+					}
+				} else {
+					throw new Error('Invalid Credential!');
+				}
+			} catch (error) {
+				console.error(error);
+				toast.error(error.message ? error.message : 'Failed to login', toastStyle);
 			}
-		} catch (error) {
-			console.error(error);
-			toast.error('Failed to login.', toastStyle);
+			setIsLoading(false);
+		} else {
+			toast.info('Please Wait', toastStyle);
 		}
 	};
 
@@ -85,7 +88,7 @@ function FormLogin() {
 				</div>
 				<Link>Forgot password?</Link>
 			</div>
-			<Button classBtn='submit-auth'>login</Button>
+			<Button classBtn='submit-auth'>{isLoading ? 'Loading...' : 'Login'}</Button>
 		</form>
 	);
 }

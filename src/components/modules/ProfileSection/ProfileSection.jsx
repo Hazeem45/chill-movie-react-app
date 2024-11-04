@@ -7,14 +7,16 @@ import './ProfileSection.css';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import axios from 'axios';
-import { Bounce, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { updateUserData } from '../../../redux/slices/userSlice';
+import { getDefaultToastConfig } from '../../../utils/toastStyleConfig';
 
 function ProfileSection({ userData }) {
 	const apiEndpoint = import.meta.env.VITE_MOCK_API_ENDPOINT;
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(false);
+	const toastStyle = getDefaultToastConfig();
 
 	const [values, setValues] = useState({
 		username: userData?.username || '',
@@ -40,53 +42,45 @@ function ProfileSection({ userData }) {
 		},
 	];
 
-	const toastStyle = {
-		position: 'top-right',
-		autoClose: 3000,
-		hideProgressBar: false,
-		closeOnClick: true,
-		pauseOnHover: true,
-		draggable: true,
-		progress: undefined,
-		theme: 'dark',
-		transition: Bounce,
-	};
-
 	const handleChangeInputForm = e => {
 		setValues({ ...values, [e.target.id]: e.target.value });
 	};
 
 	const handleSave = async () => {
-		setIsLoading(true);
-		try {
-			const response = await axios.get(apiEndpoint, {
-				params: {
-					username: values.username,
-				},
-				validateStatus: status => status === 200 || status === 404,
-			});
-
-			if (response.status == 200 && response.data[0].id !== userData?.id) {
-				throw new Error('Username is used!');
-			} else {
-				if (userData?.username === values.username && userData?.password === values.password) {
-					toast.info('No Data Change.', toastStyle);
-				} else {
-					const updatedUser = {
+		if (!isLoading) {
+			setIsLoading(true);
+			try {
+				const response = await axios.get(apiEndpoint, {
+					params: {
 						username: values.username,
-						password: values.password,
-					};
+					},
+					validateStatus: status => status === 200 || status === 404,
+				});
 
-					await axios.put(`${apiEndpoint}/${userData?.id}`, updatedUser);
-					dispatch(updateUserData({ id: userData?.id, ...updatedUser }));
-					toast.success('Successfully updated data!', toastStyle);
+				if (response.status == 200 && response.data[0].id !== userData?.id) {
+					throw new Error('Username is used!');
+				} else {
+					if (userData?.username === values.username && userData?.password === values.password) {
+						toast.info('No Data Change.', toastStyle);
+					} else {
+						const updatedUser = {
+							username: values.username,
+							password: values.password,
+						};
+
+						await axios.put(`${apiEndpoint}/${userData?.id}`, updatedUser);
+						dispatch(updateUserData({ id: userData?.id, ...updatedUser }));
+						toast.success('Successfully updated data!', toastStyle);
+					}
 				}
+			} catch (error) {
+				console.error(error);
+				toast.error(error.message ? error.message : 'Failed update data.', toastStyle);
 			}
-		} catch (error) {
-			console.error(error);
-			toast.error(error.message ? error.message : 'Failed update data.', toastStyle);
+			setIsLoading(false);
+		} else {
+			toast.info('Please Wait', toastStyle);
 		}
-		setIsLoading(false);
 	};
 
 	return (

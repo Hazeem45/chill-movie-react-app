@@ -10,3 +10,6 @@ export const store = configureStore({
 store.subscribe(() => {
 	console.log('STORE CHANGED : ', store.getState());
 });
+
+store.dispatch(userSlice.actions.setIsLogin(localStorage.getItem('isLoggedIn') === 'true'));
+store.dispatch(userSlice.actions.setUserData(JSON.parse(localStorage.getItem('userData')) || {}));

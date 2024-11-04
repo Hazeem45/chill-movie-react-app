@@ -47,7 +47,7 @@ function Profile() {
 
 	return (
 		<>
-			<ProfileSection userData={userData[0]} />
+			<ProfileSection userData={userData} />
 			<WatchContents title='My List' cardContents={watchList} />
 		</>
 	);

@@ -3,19 +3,24 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userSlice = createSlice({
 	name: 'user',
 	initialState: {
-		data: JSON.parse(localStorage.getItem('userData')) || [],
+		data: {},
+		isLogin: false,
 	} ,
 	reducers: {
-		addUserData(state, action) {
-			state.data.push(action.payload);
+		setIsLogin(state, action) {
+			state.isLogin = action.payload;
+		},
+		setUserData(state, action) {
+			state.data = action.payload;
 		},
 		updateUserData(state, action) {
-			const index = state.data.findIndex(user => user.id === action.payload.id);
-			if (index !== -1) {
-			  state.data[index] = { ...state.data[index], ...action.payload };
-			}
+			state.data = {
+				...state.data,
+				...action.payload,
+			};
+			localStorage.setItem('userData', JSON.stringify(state.data));
 		 },
 	},
 });
 
-export const { addUserData, updateUserData } = userSlice.actions;
+export const { setUserData, updateUserData, setIsLogin } = userSlice.actions;

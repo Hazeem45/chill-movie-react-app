@@ -8,7 +8,7 @@ import DetailsPage from '../pages/DetailsPage';
 import WatchList from '../pages/WatchList';
 import Profile from '../pages/Profile';
 import ErrorPage from '../pages/ErrorPage';
-import { isAuthenticated } from '../utils/authUtils';
+import ProtectedRoute from './ProtectedRoute';
 
 export const router = createBrowserRouter([
 	{
@@ -38,7 +38,11 @@ export const router = createBrowserRouter([
 					},
 					{
 						path: 'profile',
-						element: isAuthenticated() ? <Profile /> : <Navigate to='/' replace />,
+						element: (
+							<ProtectedRoute>
+								<Profile />
+							</ProtectedRoute>
+						),
 					},
 				],
 			},
