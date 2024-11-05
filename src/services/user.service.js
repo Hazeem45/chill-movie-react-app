@@ -1,19 +1,5 @@
 import axios from 'axios';
 
-// export const updateUser = async (userId, updatedData) => {
-// 	const response = await axios.get(import.meta.env.VITE_MOCK_API_ENDPOINT, {
-// 		params: { username: updatedData.username },
-// 		validateStatus: (status) => status === 200 || status === 404,
-// 	});
-  
-// 	if (response.status === 200 && response.data[0].id !== userId) {
-// 		throw new Error('Username is used!');
-// 	}
-  
-// 	return axios.put(`${import.meta.env.VITE_MOCK_API_ENDPOINT}/${userId}`, updatedData);
-// };
-
-
 const APIEndpoint = import.meta.env.VITE_MOCK_API_ENDPOINT;
 
 export const getUsername = async (username) => {

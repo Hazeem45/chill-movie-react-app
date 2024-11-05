@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updatedCollection } from '../utils/updateCollection';
 import { setWatchList } from '../redux/slices/userSlice';
-// import { fetchWatchList } from '../services/watchlist.service';
 import { getContentDetails } from '../services/tmdb.service';
 import { getDurationOrEpisode } from '../utils/getSpecificDetails';
 
