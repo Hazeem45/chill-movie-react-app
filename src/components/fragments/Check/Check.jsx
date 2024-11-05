@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import Icon from '../../elements/Icon';
-import './Check.css';
-import PropTypes from 'prop-types';
-import useFetchWatchList from '../../../hooks/useFetchWatchList';
-import { getCustomToastConfig, getDefaultToastConfig } from '../../../utils/toastStyleConfig';
 import { toast } from 'react-toastify';
 import ConfirmToast from '../ConfirmToast/ConfirmToast';
+import { getCustomToastConfig, getDefaultToastConfig } from '../../../utils/toastStyleConfig';
+import PropTypes from 'prop-types';
+import './Check.css';
+import { useDispatch } from 'react-redux';
+import { removeItemWatchList } from '../../../redux/slices/userSlice';
 
 function Check({ id, type }) {
 	const [isChecked, setIsChecked] = useState(false);
 	const [checkedItems, setCheckedItems] = useState([]);
 	const toastDefault = getDefaultToastConfig();
-	useFetchWatchList();
+	const dispatch = useDispatch();
 
 	const toastStyle = getCustomToastConfig({
 		position: 'top-center',
@@ -40,6 +41,7 @@ function Check({ id, type }) {
 
 		const confirmRemoval = () => {
 			updatedItems = checkedItems.filter(item => item.id !== id);
+			dispatch(removeItemWatchList(id));
 			syncToLocalStorage(updatedItems);
 			setIsChecked(false);
 			toast.dismiss();

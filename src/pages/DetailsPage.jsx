@@ -1,9 +1,10 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getDirectorOrCreator, getDurationOrEpisode, setVideo, updatedCollection } from '../utils/updateCollection';
+import { setVideo, updatedCollection } from '../utils/updateCollection';
 import DetailsTemplate from '../components/templates/DetailsTemplate/DetailsTemplate';
 import ErrorPage from './ErrorPage';
+import { getDirectorOrCreator, getDurationOrEpisode } from '../utils/getSpecificDetails';
+import { getContentDetails, getSeasonAndEpisode } from '../services/tmdb.service';
 
 function DetailsPage() {
 	const { type, id } = useParams();
@@ -16,84 +17,72 @@ function DetailsPage() {
 
 	useEffect(() => {
 		setRecommendationsList([]);
+		const params = {
+			api_key: apiKey,
+			append_to_response: 'credits,videos,recommendations',
+		};
 		const fetchData = async () => {
 			const baseImageUrl = import.meta.env.VITE_BASE_IMG_URL;
-			const apiEndpoint = import.meta.env.VITE_TMDB_API_ENDPOINT;
 
 			try {
-				const detailsEndpoint = `${apiEndpoint}/${type}/${id}`;
-				const response = await axios.get(detailsEndpoint, {
-					params: {
-						api_key: apiKey,
-						append_to_response: 'credits,videos,recommendations',
-					},
-				});
+				const response = await getContentDetails(type, id, params);
 
-				const responseData = response.data;
-				const recommendationsResult = responseData.recommendations.results;
-				const detailsInTMDB = `${import.meta.env.VITE_BASE_TMDB_URL}/${type}/${responseData.id}`;
+				const recommendationsResult = response.recommendations.results;
+				const detailsInTMDB = `${import.meta.env.VITE_BASE_TMDB_URL}/${type}/${response.id}`;
 
 				const result = {
-					id: responseData.id,
+					id: response.id,
 					type: type,
-					video: setVideo(type === 'movie' ? responseData.title : responseData.name, responseData),
-					poster: `${baseImageUrl}${responseData.poster_path}`,
-					backdrop: `${baseImageUrl}${responseData.backdrop_path}`,
-					year: new Date(type === 'movie' ? responseData.release_date : responseData.first_air_date).getFullYear(),
-					title: type === 'movie' ? responseData.title : responseData.name,
-					rating: `${responseData.vote_average.toFixed(1)}/10`,
-					genre: responseData.genres.map(genre => genre.name),
-					cast: responseData.credits.cast
+					video: setVideo(type === 'movie' ? response.title : response.name, response),
+					poster: `${baseImageUrl}${response.poster_path}`,
+					backdrop: `${baseImageUrl}${response.backdrop_path}`,
+					year: new Date(type === 'movie' ? response.release_date : response.first_air_date).getFullYear(),
+					title: type === 'movie' ? response.title : response.name,
+					rating: `${response.vote_average.toFixed(1)}/10`,
+					genre: response.genres.map(genre => genre.name),
+					cast: response.credits.cast
 						.slice(0, 3)
 						.map(actor => actor.name)
 						.join(', '),
 					fullCredit: detailsInTMDB,
-					overview: responseData.overview,
+					overview: response.overview,
 				};
-				getDirectorOrCreator(responseData, type, result);
-				getDurationOrEpisode(responseData, type, result);
+				getDirectorOrCreator(response, type, result);
+				getDurationOrEpisode(response, type, result);
 				const updatedResult = updatedCollection(result);
 				setData([updatedResult]);
 
-				const numberOfSeasons = responseData.number_of_seasons;
+				const totalSeason = response.number_of_seasons;
 				const fetchedSeasons = [];
 
-				for (let i = 1; i <= numberOfSeasons; i++) {
-					const seasonResponse = await axios.get(`${detailsEndpoint}/season/${i}`, {
-						params: {
-							api_key: apiKey,
-							append_to_response: 'episodes',
-						},
-					});
-					fetchedSeasons.push(seasonResponse.data);
+				for (let i = 1; i <= totalSeason; i++) {
+					const seasonResponse = await getSeasonAndEpisode(type, id, i);
+					fetchedSeasons.push(seasonResponse);
 				}
 				setSeasonsData(fetchedSeasons);
 
 				const recommendsList = [];
+				delete params['append_to_response'];
 
 				for (let i = 0; i < 10; i++) {
-					const response = await axios.get(`${apiEndpoint}/${recommendationsResult[i].media_type}/${recommendationsResult[i].id}`, {
-						params: {
-							api_key: apiKey,
-						},
-					});
+					const response = await getContentDetails(recommendationsResult[i].media_type, recommendationsResult[i].id, params);
 					const recommendation = {
-						id: response.data.id,
-						poster: `${baseImageUrl}/original${response.data.poster_path}`,
-						backdrop: `${baseImageUrl}/original${response.data.backdrop_path}`,
-						title: type === 'movie' ? response.data.title : response.data.name,
-						rating: `${response.data.vote_average.toFixed(1)}/10`,
-						genre: response.data.genres.map(genre => genre.name),
+						id: response.id,
+						poster: `${baseImageUrl}/original${response.poster_path}`,
+						backdrop: `${baseImageUrl}/original${response.backdrop_path}`,
+						title: type === 'movie' ? response.title : response.name,
+						rating: `${response.vote_average.toFixed(1)}/10`,
+						genre: response.genres.map(genre => genre.name),
 						type: recommendationsResult[i].media_type,
 					};
-					getDurationOrEpisode(response.data, recommendationsResult[i].media_type, recommendation);
+					getDurationOrEpisode(response, recommendationsResult[i].media_type, recommendation);
 					const updatedRecommendation = updatedCollection(recommendation);
 					recommendsList.push(updatedRecommendation);
 				}
 				setRecommendationsList(recommendsList);
 			} catch (error) {
 				console.error(`Error fetching ${type}:`, error);
-				setErrorMessage(error.response.data.status_message);
+				setErrorMessage(error.message);
 				setHasError(true);
 				return null;
 			}

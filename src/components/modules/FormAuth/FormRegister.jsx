@@ -2,14 +2,13 @@ import Button from '../../elements/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import InputForm from '../../fragments/InputForm/InputForm';
 import { useState } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import './FormAuth.css';
 import { getDefaultToastConfig } from '../../../utils/toastStyleConfig';
+import { createUser, getUsername } from '../../../services/user.service';
 
 function FormRegister() {
 	const navigate = useNavigate();
-	const apiEndpoint = import.meta.env.VITE_MOCK_API_ENDPOINT;
 	const [isLoading, setIsLoading] = useState(false);
 	const toastStyle = getDefaultToastConfig();
 
@@ -49,23 +48,20 @@ function FormRegister() {
 				toast.error('Passwords do not match!', toastStyle);
 				return;
 			}
-			try {
-				const response = await axios.get(apiEndpoint, {
-					params: {
-						username: values.username,
-					},
-					validateStatus: status => status === 200 || status === 404,
-				});
 
-				if (response.status == 200) {
+			try {
+				const responseUsername = await getUsername(values.username);
+				if (responseUsername.status === 200) {
 					throw new Error('Username is used!');
 				} else {
-					await axios.post(apiEndpoint, {
-						username: values.username,
-						password: values.password,
-					});
+					await createUser(values.username, values.password);
 					toast.success('User registered successfully!', toastStyle);
-					navigate('/login');
+					navigate('/login', {
+						state: {
+							username: values.username,
+							password: values.password,
+						},
+					});
 				}
 			} catch (error) {
 				console.error(error);

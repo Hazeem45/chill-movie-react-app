@@ -1,36 +1,42 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
-import { getDurationOrEpisode, updatedCollection } from '../utils/updateCollection';
+import { updatedCollection } from '../utils/updateCollection';
 import { setWatchList } from '../redux/slices/userSlice';
+// import { fetchWatchList } from '../services/watchlist.service';
+import { getContentDetails } from '../services/tmdb.service';
+import { getDurationOrEpisode } from '../utils/getSpecificDetails';
 
 const useFetchWatchList = () => {
 	const dispatch = useDispatch();
-	const storedItems = JSON.parse(localStorage.getItem('checkedItems'));
 	const watchList = useSelector(state => state.user.watchList);
-	const baseImageUrl = import.meta.env.VITE_BASE_IMG_URL;
-	const apiKey = import.meta.env.VITE_TMDB_API_KEY;
+	const localStorageData = JSON.parse(localStorage.getItem('checkedItems'));
 
 	useEffect(() => {
+		let storedItems;
+		if (localStorageData) {
+			storedItems = localStorageData;
+		} else {
+			storedItems = [];
+		}
+
 		const fetchDataWatchList = async () => {
+			const params = { api_key: import.meta.env.VITE_TMDB_API_KEY };
 			try {
 				const resultList = await Promise.all(
 					storedItems.map(async item => {
-						const response = await axios.get(`${import.meta.env.VITE_TMDB_API_ENDPOINT}/${item.type}/${item.id}`, {
-							params: { api_key: apiKey },
-						});
+						const response = await getContentDetails(item.type, item.id, params);
 
 						const result = {
-							id: response.data.id,
-							poster: response.data.poster_path ? `${baseImageUrl}/original${response.data.poster_path}` : null,
-							backdrop: response.data.backdrop_path ? `${baseImageUrl}/original${response.data.backdrop_path}` : null,
-							title: item.type === 'movie' ? response.data.title : response.data.name,
-							rating: `${response.data.vote_average.toFixed(1)}/10`,
-							genre: response.data.genres.map(genre => genre.name),
+							id: response.id,
+							poster: response.poster_path ? `${import.meta.env.VITE_BASE_IMG_URL}/original${response.poster_path}` : null,
+							backdrop: response.backdrop_path ? `${import.meta.env.VITE_BASE_IMG_URL}/original${response.backdrop_path}` : null,
+							title: item.type === 'movie' ? response.title : response.name,
+							rating: `${response.vote_average.toFixed(1)}/10`,
+							genre: response.genres.map(genre => genre.name),
 							type: item.type,
 						};
 
-						getDurationOrEpisode(response.data, item.type, result);
+						getDurationOrEpisode(response, item.type, result);
 						return updatedCollection(result);
 					}),
 				);
@@ -44,7 +50,7 @@ const useFetchWatchList = () => {
 		};
 
 		fetchDataWatchList();
-	}, [apiKey, baseImageUrl, dispatch, storedItems, watchList]);
+	}, [dispatch, localStorageData, watchList]);
 };
 
 export default useFetchWatchList;

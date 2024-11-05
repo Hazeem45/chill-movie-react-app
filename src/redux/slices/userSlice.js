@@ -24,7 +24,10 @@ export const userSlice = createSlice({
 		setWatchList(state, action) {
 			state.watchList = action.payload;
 		},
+		removeItemWatchList(state, action) {
+			state.watchList = state.watchList.filter(item => item.id !== action.payload);
+		},
 	},
 });
 
-export const { setUserData, updateUserData, setIsLogin, setWatchList } = userSlice.actions;
+export const { setUserData, updateUserData, setIsLogin, setWatchList, removeItemWatchList } = userSlice.actions;

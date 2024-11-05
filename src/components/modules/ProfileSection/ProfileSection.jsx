@@ -3,17 +3,16 @@ import ProfileField from '../../fragments/ProfileField/ProfileField';
 import ProfilePhotoUploader from '../../fragments/ProfilePhotoUploader/ProfilePhotoUploader';
 import SubscriptionNotice from '../../fragments/SubscriptionNotice/SubscriptionNotice';
 import DefaultProfile from '../../../assets/img/profile-default.png';
-import './ProfileSection.css';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { updateUserData } from '../../../redux/slices/userSlice';
 import { getDefaultToastConfig } from '../../../utils/toastStyleConfig';
+import { getUsername, updateUser } from '../../../services/user.service';
+import './ProfileSection.css';
 
 function ProfileSection({ userData }) {
-	const apiEndpoint = import.meta.env.VITE_MOCK_API_ENDPOINT;
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(false);
 	const toastStyle = getDefaultToastConfig();
@@ -50,26 +49,20 @@ function ProfileSection({ userData }) {
 		if (!isLoading) {
 			setIsLoading(true);
 			try {
-				const response = await axios.get(apiEndpoint, {
-					params: {
-						username: values.username,
-					},
-					validateStatus: status => status === 200 || status === 404,
-				});
-
-				if (response.status == 200 && response.data[0].id !== userData?.id) {
-					throw new Error('Username is used!');
+				if (userData?.username === values.username && userData?.password === values.password) {
+					toast.info('No Data Change.', toastStyle);
 				} else {
-					if (userData?.username === values.username && userData?.password === values.password) {
-						toast.info('No Data Change.', toastStyle);
+					const responseUsername = await getUsername(values.username);
+					if (responseUsername.status === 200 && responseUsername.data[0].id !== userData?.id) {
+						throw new Error('Username is used!');
 					} else {
-						const updatedUser = {
-							username: values.username,
-							password: values.password,
-						};
-
-						await axios.put(`${apiEndpoint}/${userData?.id}`, updatedUser);
-						dispatch(updateUserData({ id: userData?.id, ...updatedUser }));
+						await updateUser(userData?.id, values.username, values.password);
+						dispatch(
+							updateUserData({
+								username: values.username,
+								password: values.password,
+							}),
+						);
 						toast.success('Successfully updated data!', toastStyle);
 					}
 				}
