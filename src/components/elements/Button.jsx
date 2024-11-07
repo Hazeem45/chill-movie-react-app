@@ -9,6 +9,7 @@ function Button({ type, handleClick, classBtn, children }) {
 }
 
 Button.propTypes = {
+	type: PropTypes.string,
 	handleClick: PropTypes.func,
 	classBtn: PropTypes.string,
 	children: PropTypes.node,
