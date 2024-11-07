@@ -1,7 +1,8 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { collectionTitles, getDurationOrEpisode, setVideo, updatedCollection } from '../utils/updateCollection';
+import { collectionTitles, setVideo, updatedCollection } from '../utils/updateCollection';
+import { getDurationOrEpisode } from '../utils/getSpecificDetails';
 
 export const CollectionContext = createContext();
 

@@ -1,0 +1,162 @@
+.admin-dashboard {
+	display: flex;
+	height: 100vh;
+	font-family: Arial, sans-serif;
+	position: relative;
+}
+
+.sidebar {
+	width: 250px;
+	background-color: #333;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 7px;
+	padding: 1rem;
+	position: fixed;
+	height: 100vh;
+}
+
+.sidebar a {
+	padding: 0.5rem;
+	cursor: pointer;
+	width: 90%;
+	border-radius: 5px;
+	font-size: 1.25em;
+	transition: 0.1s;
+}
+
+.sidebar a:hover {
+	background-color: #555;
+	color: white;
+}
+
+.sidebar a:first-child:hover {
+	background-color: transparent;
+}
+
+.main-content {
+	flex-grow: 1;
+	margin-left: 280px;
+	padding: 2rem;
+}
+
+.main-content h2 {
+	margin-bottom: 1rem;
+}
+
+.main-content h3 {
+	text-align: center;
+}
+
+/* button */
+.main-content button {
+	color: white;
+	border: none;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: 0.3s;
+}
+
+.main-content button:active {
+	transform: scale(0.9);
+}
+
+.main-content button.form-btn {
+	background-color: #3254ff;
+	margin: 1em 0 1.5em;
+}
+
+.main-content button.cancel-btn {
+	background-color: red;
+	position: absolute;
+	transform: translateY(-338%) translateX(210%);
+}
+
+.main-content button.edit-btn {
+	border: 1px solid #4463ff;
+	color: #4463ff;
+	background-color: transparent;
+}
+
+.main-content button.delete-btn {
+	border: 1px solid red;
+	color: red;
+	background-color: transparent;
+}
+/* button */
+
+.main-content form {
+	padding: 2em;
+	box-shadow: 0 0 5px gray;
+	border-radius: 15px;
+	margin-bottom: 24px;
+}
+
+.main-content ul {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+}
+.main-content li:first-child {
+	position: sticky;
+	top: 0;
+	background-color: #3254ff;
+}
+
+.main-content li {
+	background-color: #333;
+	padding: 1em;
+	display: flex;
+	border-radius: 10px;
+	align-items: center;
+}
+
+.main-content li p:first-child {
+	margin-right: 40px;
+	min-width: 50px;
+}
+
+.main-content li:first-child p {
+	font-weight: 700;
+}
+
+.main-content .button-wrapper {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	margin-left: auto;
+}
+
+.form-admin .input-form:last-child {
+	flex-direction: row;
+	gap: 0;
+	align-items: center;
+}
+
+.form-admin .input-form:last-child input {
+	width: max-content;
+	height: max-content;
+}
+
+.card-dashboard-wrap {
+	display: flex;
+	gap: 10px;
+}
+
+.card-dashboard {
+	width: 200px;
+	background-color: #333;
+	border-radius: 7px;
+	padding: 1em 0.7em;
+}
+
+.card-dashboard p {
+	font-size: 1.5em;
+	text-align: center;
+	font-weight: 700;
+}

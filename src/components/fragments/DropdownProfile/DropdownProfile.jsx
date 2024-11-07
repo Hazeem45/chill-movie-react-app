@@ -2,10 +2,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import Icon from '../../elements/Icon';
 import './DropdownProfile.css';
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 function DropdownProfile() {
 	const navigate = useNavigate();
 	const isLogin = useSelector(state => state.user.isLogin);
+	const userData = useSelector(state => state.user.data);
+	const [status, setStatus] = useState('');
 
 	const iconStyle = {
 		fontSize: '18px',
@@ -23,10 +26,18 @@ function DropdownProfile() {
 		}
 	};
 
+	useEffect(() => {
+		if (isLogin && userData.role !== 'admin') {
+			setStatus('loggedInUser');
+		} else if (isLogin && userData.role === 'admin') {
+			setStatus('loggedInAdmin');
+		}
+	}, [isLogin, userData]);
+
 	return (
 		<div className='dropdown'>
 			<ul>
-				{isLogin && (
+				{status === 'loggedInUser' && (
 					<>
 						<li>
 							<Link to={'/profile'}>
@@ -41,6 +52,14 @@ function DropdownProfile() {
 							</Link>
 						</li>
 					</>
+				)}
+				{status === 'loggedInAdmin' && (
+					<li>
+						<Link to={'/admin'}>
+							<Icon iconClass='fa-tasks' iconStyle={{ fontSize: iconStyle.fontSize, marginRight: iconStyle.margin }} />
+							<p>Dashboard</p>
+						</Link>
+					</li>
 				)}
 
 				<li>

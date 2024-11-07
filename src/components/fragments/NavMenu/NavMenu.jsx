@@ -20,7 +20,7 @@ function NavMenu() {
 			</Link>
 			<Link onClick={() => alert('this feature is under development')}>series</Link>
 			<Link onClick={() => alert('this feature is under development')}>movies</Link>
-			<Link to={'/my-list'} onClick={handleClick}>
+			<Link to={'/favorite'} onClick={handleClick}>
 				my list
 			</Link>
 		</div>
