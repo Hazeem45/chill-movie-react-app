@@ -73,6 +73,10 @@ function ManageUsers() {
 				try {
 					const responseUsername = await getUsername(values.username);
 					if (responseUsername.status === 200 && responseUsername.data[0].id !== values.id) {
+						setValues({
+							...values,
+							username: '',
+						});
 						throw new Error('Username is used!');
 					} else {
 						await updateUser(values.id, values.username, values.password);
@@ -86,6 +90,10 @@ function ManageUsers() {
 				try {
 					const responseUsername = await getUsername(values.username);
 					if (responseUsername.status === 200) {
+						setValues({
+							...values,
+							username: '',
+						});
 						throw new Error('Username is used!');
 					} else {
 						await createUser(values.username, values.password, values.role);
@@ -132,28 +140,29 @@ function ManageUsers() {
 				</div>
 				{isOnEdit ? (
 					<div className='button-wrapper'>
-						<Button classBtn='form-btn'>{isLoading ? 'Loading...' : 'Update User'}</Button>
+						<Button type='submit' classBtn='form-btn'>
+							{isLoading ? 'Loading...' : 'Update User'}
+						</Button>
+						<Button
+							type='reset'
+							classBtn='cancel-btn'
+							handleClick={() => {
+								setIsOnEdit(false);
+								setValues({
+									id: '',
+									username: '',
+									password: '',
+									role: null,
+								});
+							}}
+						>
+							Cancel
+						</Button>
 					</div>
 				) : (
 					<Button classBtn='form-btn'>{isLoading ? 'Loading...' : 'Create New User'}</Button>
 				)}
 			</form>
-			{isOnEdit && (
-				<Button
-					classBtn='cancel-btn'
-					handleClick={() => {
-						setIsOnEdit(false);
-						setValues({
-							id: '',
-							username: '',
-							password: '',
-							role: null,
-						});
-					}}
-				>
-					Cancel
-				</Button>
-			)}
 			<h3>USERS LIST</h3>
 			<ul>
 				<li>
