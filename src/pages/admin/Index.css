@@ -66,13 +66,10 @@
 
 .main-content button.form-btn {
 	background-color: #3254ff;
-	margin: 1em 0 1.5em;
 }
 
 .main-content button.cancel-btn {
 	background-color: red;
-	position: absolute;
-	transform: translateY(-338%) translateX(210%);
 }
 
 .main-content button.edit-btn {
@@ -93,6 +90,9 @@
 	box-shadow: 0 0 5px gray;
 	border-radius: 15px;
 	margin-bottom: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .main-content ul {
@@ -123,6 +123,10 @@
 
 .main-content li:first-child p {
 	font-weight: 700;
+}
+
+.main-content form .button-wrapper {
+	margin-left: 0;
 }
 
 .main-content .button-wrapper {

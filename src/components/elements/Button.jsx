@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-function Button({ handleClick, classBtn, children }) {
+function Button({ type, handleClick, classBtn, children }) {
 	return (
-		<button className={classBtn} onClick={handleClick}>
+		<button type={type} className={classBtn} onClick={handleClick}>
 			{children}
 		</button>
 	);
