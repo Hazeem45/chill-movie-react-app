@@ -1,5 +1,9 @@
 # React + Vite
 
+<h2>ADMIN</h2>
+- username : inilahAdmin
+- password : adalahAdmin
+
 The directory structure uses atomic design by using different names for the directories :
 
 -  component

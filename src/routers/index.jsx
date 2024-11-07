@@ -9,6 +9,7 @@ import WatchList from '../pages/WatchList';
 import Profile from '../pages/Profile';
 import ErrorPage from '../pages/ErrorPage';
 import ProtectedRoute from './ProtectedRoute';
+import AdminDashboard from '../pages/admin/Index';
 
 export const router = createBrowserRouter([
 	{
@@ -47,6 +48,11 @@ export const router = createBrowserRouter([
 				],
 			},
 		],
+	},
+	{
+		path: '/admin',
+		element: <AdminDashboard />,
+		errorElement: <ErrorPage />,
 	},
 	{
 		path: '/',

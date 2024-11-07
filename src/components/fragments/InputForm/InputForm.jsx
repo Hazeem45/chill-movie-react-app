@@ -5,7 +5,7 @@ import { useState } from 'react';
 import './InputForm.css';
 import Icon from '../../elements/Icon';
 
-function InputForm({ name, inputType, value, placeholder, handleChange }) {
+function InputForm({ id, name, inputType, value, checked, placeholder, handleChange, required }) {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 	const [inputPassword, setInputPassword] = useState('password');
 
@@ -22,12 +22,13 @@ function InputForm({ name, inputType, value, placeholder, handleChange }) {
 		<div className='input-form'>
 			<Label htmlFor={name} value={name === 'confirmPassword' ? 'confirm password' : name} />
 			<Input
-				id={name}
+				id={id ?? name}
 				type={inputType ? inputType : inputPassword}
 				value={value}
+				checked={checked}
 				placeholder={placeholder}
 				handleChange={handleChange}
-				isRequired={true}
+				isRequired={required ?? true}
 			/>
 			{!inputType && (
 				<span className='password-toggle-icon' onClick={handleClickIconPassword}>
@@ -39,11 +40,14 @@ function InputForm({ name, inputType, value, placeholder, handleChange }) {
 }
 
 InputForm.propTypes = {
+	id: PropTypes.string,
 	name: PropTypes.string.isRequired,
 	inputType: PropTypes.string,
 	value: PropTypes.string,
+	checked: PropTypes.bool,
 	placeholder: PropTypes.string.isRequired,
 	handleChange: PropTypes.func,
+	required: PropTypes.bool,
 };
 
 export default InputForm;

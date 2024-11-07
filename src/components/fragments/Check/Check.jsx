@@ -48,19 +48,8 @@ function Check({ id, type }) {
 			toast.info('Item removed from Favorite', toastDefault);
 		};
 
-		const cancelRemoval = () => {
-			toast.dismiss();
-		};
-
 		if (itemExists) {
-			toast(
-				<ConfirmToast
-					questionText='Are you sure you want to remove this item from favorites?'
-					handleConfirm={confirmRemoval}
-					handleCancel={cancelRemoval}
-				/>,
-				toastStyle,
-			);
+			toast(<ConfirmToast questionText='Are you sure you want to remove this item from favorites?' handleConfirm={confirmRemoval} />, toastStyle);
 		} else {
 			toast.success('Success add to Favorite', toastDefault);
 			updatedItems = [...checkedItems, { id, type }];
